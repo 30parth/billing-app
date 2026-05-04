@@ -2,8 +2,16 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
+Route::livewire('/', 'dashboard.dashboard')->name('dashboard');
+
+Route::prefix('product')->name('product.')->group(function () {
+    Route::livewire('/', 'product.product-list')->name('list');
+    Route::livewire('add', 'product.product-form')->name('add');
+    Route::livewire('edit/{id}', 'product.product-form')->name('edit');
 });
 
-Route::livewire('/product', 'product-list')->name('product');
+Route::prefix('bill')->name('bill.')->group(function () {
+    Route::livewire('/', 'bill.bill-list')->name('list');
+    Route::livewire('add', 'bill.bill-form')->name('add');
+    Route::livewire('edit/{id}', 'bill.bill-form')->name('edit');
+});
