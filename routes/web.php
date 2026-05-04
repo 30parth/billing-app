@@ -14,4 +14,5 @@ Route::prefix('bill')->name('bill.')->group(function () {
     Route::livewire('/', 'bill.bil-list')->name('list');
     Route::livewire('add', 'bill.bill-form')->name('add');
     Route::livewire('edit/{id}', 'bill.bill-form')->name('edit');
+    Route::get('{id}/pdf', [\App\Http\Controllers\BillPdfController::class, 'generate'])->name('pdf');
 });

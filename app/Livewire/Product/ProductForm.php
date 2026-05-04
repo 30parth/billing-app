@@ -34,6 +34,11 @@ class ProductForm extends Component
         $this->redirectRoute('product.list', navigate: true);
     }
 
+    public function backToListView()
+    {
+        return $this->redirectRoute('product.list', navigate: true);
+    }
+
     public function render()
     {
         return view('livewire.product.product-form');

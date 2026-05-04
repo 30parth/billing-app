@@ -75,7 +75,12 @@
                 </x-ui.table>
             </div>
             <div class="mt-6 flex justify-between">
-                <x-ui.button variant="secondary" wire:click="backToListView">Cancel</x-ui.button>
+                <div class="flex gap-2">
+                    <x-ui.button variant="secondary" wire:click="backToListView">Cancel</x-ui.button>
+                    @if($id)
+                        <x-ui.button type="button" variant="secondary" onclick="window.open('{{ route('bill.pdf', $id) }}', '_blank')">Download PDF</x-ui.button>
+                    @endif
+                </div>
                 <x-ui.button type="submit">Save</x-ui.button>
             </div>
         </form>

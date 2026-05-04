@@ -6,5 +6,5 @@
     <div wire:click="delete({{ $id }})" wire:confirm="Are you want to delete this ?">
         <x-ui.icon.trash />
     </div>
-
+    {{ $slot }}
 </div>

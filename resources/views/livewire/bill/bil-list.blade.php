@@ -33,7 +33,11 @@
                         <x-ui.table.td>{{ $bill->notes }}</x-ui.table.td>
                         <x-ui.table.td>{{ $bill->total }}</x-ui.table.td>
                         <x-ui.table.td>
-                            <x-common.action-button id="{{ $bill->id }}" modalId="product-form-modal" />
+                            <x-common.action-button id="{{ $bill->id }}" modalId="product-form-modal">
+                                <div class="cursor-pointer" wire:click="downloadBill('{{ $bill->id }}')">
+                                    <x-ui.icon.printer />
+                                </div>
+                            </x-common.action-button>
                         </x-ui.table.td>
                     </x-ui.table.row>
                 @endforeach
