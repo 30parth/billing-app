@@ -18,9 +18,19 @@ class Sidebar extends Component
 
         $this->menuItems = [
             [
+                'label' => 'Dashboard',
+                'url' => 'dashboard',
+                'icon' => 'ui.icon.dashboard',
+            ],
+            [
                 'label' => 'Products',
-                'url' => 'product',
+                'url' => 'product.list',
                 'icon' => 'ui.icon.product',
+            ],
+            [
+                'label' => 'Bill',
+                'url' => 'bill.list',
+                'icon' => 'ui.icon.bill',
             ],
         ];
     }
