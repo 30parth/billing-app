@@ -52,6 +52,7 @@ class BilList extends Component
             'margin_bottom' => 16,
             'margin_header' => 9,
             'margin_footer' => 9,
+            'tempDir' => storage_path('app/mpdf'),
         ]);
 
         $mpdf->WriteHTML($html);
