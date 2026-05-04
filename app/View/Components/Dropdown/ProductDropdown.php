@@ -2,20 +2,21 @@
 
 namespace App\View\Components\Dropdown;
 
+use App\Models\Product;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
-use App\Models\Teacher;
 
-class TeacherDropdown extends Component
+class ProductDropdown extends Component
 {
     /**
      * Create a new component instance.
      */
-    public $teachers;
+    public $products;
+
     public function __construct()
     {
-        $this->teachers = Teacher::all();
+        $this->products = Product::whereNull('deleted_at')->get();
     }
 
     /**
@@ -23,6 +24,6 @@ class TeacherDropdown extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.dropdown.teacher-dropdown');
+        return view('components.dropdown.product-dropdown');
     }
 }

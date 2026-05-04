@@ -11,7 +11,7 @@ Route::prefix('product')->name('product.')->group(function () {
 });
 
 Route::prefix('bill')->name('bill.')->group(function () {
-    Route::livewire('/', 'bill.bill-list')->name('list');
+    Route::livewire('/', 'bill.bil-list')->name('list');
     Route::livewire('add', 'bill.bill-form')->name('add');
     Route::livewire('edit/{id}', 'bill.bill-form')->name('edit');
 });
