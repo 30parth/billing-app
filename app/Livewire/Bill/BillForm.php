@@ -20,6 +20,11 @@ class BillForm extends Component
             $this->id = $id;
             $bill = Bill::find($id);
             $this->form->setBill($bill);
+        } else {
+            $series = \App\Models\BillSeries::first();
+            if ($series) {
+                $this->form->bill_no = $series->prefix . ($series->current + 1);
+            }
         }
     }
 
@@ -115,6 +120,11 @@ class BillForm extends Component
                 'notes' => $this->form->notes,
                 'total' => $this->form->total,
             ]);
+
+            $series = \App\Models\BillSeries::first();
+            if ($series) {
+                $series->increment('current');
+            }
         }
 
         foreach ($this->form->products as $product) {

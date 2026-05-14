@@ -3,11 +3,7 @@
         <form wire:submit="save">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 <x-ui.form.input-with-label type="date" label="Date" name="form.date" />
-                @if ($id)
-                    <x-ui.form.input-with-label label="Bill No" name="form.bill_no" disabled />
-                @else
-                    <x-ui.form.input-with-label label="Bill No" name="form.bill_no" />
-                @endif
+                <x-ui.form.input-with-label label="Bill No" name="form.bill_no" disabled />
                 <x-ui.form.input-with-label label="Customer Name" name="form.customer_name" />
             </div>
             <div class="mt-4">
@@ -77,8 +73,9 @@
             <div class="mt-6 flex justify-between">
                 <div class="flex gap-2">
                     <x-ui.button variant="secondary" wire:click="backToListView">Cancel</x-ui.button>
-                    @if($id)
-                        <x-ui.button type="button" variant="secondary" onclick="window.open('{{ route('bill.pdf', $id) }}', '_blank')">Download PDF</x-ui.button>
+                    @if ($id)
+                        <x-ui.button type="button" variant="secondary"
+                            onclick="window.open('{{ route('bill.pdf', $id) }}', '_blank')">Download PDF</x-ui.button>
                     @endif
                 </div>
                 <x-ui.button type="submit">Save</x-ui.button>
