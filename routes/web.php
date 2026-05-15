@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BillPdfController;
 use Illuminate\Support\Facades\Route;
 
 Route::livewire('/', 'dashboard.dashboard')->name('dashboard');
@@ -14,5 +15,15 @@ Route::prefix('bill')->name('bill.')->group(function () {
     Route::livewire('/', 'bill.bil-list')->name('list');
     Route::livewire('add', 'bill.bill-form')->name('add');
     Route::livewire('edit/{id}', 'bill.bill-form')->name('edit');
-    Route::get('{id}/pdf', [\App\Http\Controllers\BillPdfController::class, 'generate'])->name('pdf');
+    Route::get('{id}/pdf', [BillPdfController::class, 'generate'])->name('pdf');
+});
+
+Route::get('/clear', function () {
+    Artisan::call('cache:clear');
+    Artisan::call('route:clear');
+    Artisan::call('view:clear');
+    Artisan::call('config:clear');
+    Artisan::call('optimize:clear');
+
+    return 'cache cleared successfully';
 });
