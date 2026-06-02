@@ -8,7 +8,7 @@
         <a href="/" wire:navigate class="flex items-center ms-2 md:me-24">
             {{-- <img src="https://flowbite.com/docs/images/logo.svg" class="h-8 me-3" alt="FlowBite Logo" /> --}}
             {{-- <span class="self-center text-lg font-semibold sm:text-xl whitespace-nowrap dark:text-white">{{ ucfirst(Auth::user()->role) . ' Dashboard' }}</span> --}}
-            Billing Software nja
+            Billing Software
         </a>
     </div>
 
