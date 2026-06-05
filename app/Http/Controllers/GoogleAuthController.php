@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Laravel\Socialite\Facades\Socialite;
 
 class GoogleAuthController extends Controller
 {
@@ -26,6 +24,7 @@ class GoogleAuthController extends Controller
             ], [
                 'name' => $googleUser->name,
                 'email' => $googleUser->email,
+                'avatar' => $googleUser->avatar,
                 'password' => bcrypt(Str::random(16)), // Fallback password
             ]);
 
