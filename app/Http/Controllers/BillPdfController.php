@@ -12,9 +12,11 @@ class BillPdfController extends Controller
     {
         $bill = Bill::where('user_id', Auth::user()->id)->with('billProducts.product')->findOrFail($id);
 
-        $html = view('pdf.bill', compact('bill'))->render();
+        $setting = Auth::user()->setting;
 
-        $mpdf = new Mpdf([
+        $html = view('pdf.bill', compact('bill', 'setting'))->render();
+
+        $mpdfConfig = [
             'mode' => 'utf-8',
             'format' => 'A4',
             'margin_left' => 15,
@@ -23,7 +25,27 @@ class BillPdfController extends Controller
             'margin_bottom' => 16,
             'margin_header' => 9,
             'margin_footer' => 9,
-        ]);
+        ];
+
+        if ($setting && $setting->use_gujarati_font && $setting->font_path && file_exists(storage_path('app/public/' . $setting->font_path))) {
+            $defaultConfig = (new \Mpdf\Config\ConfigVariables())->getDefaults();
+            $fontDirs = $defaultConfig['fontDir'];
+
+            $defaultFontConfig = (new \Mpdf\Config\FontVariables())->getDefaults();
+            $fontData = $defaultFontConfig['fontdata'];
+
+            $mpdfConfig['fontDir'] = array_merge($fontDirs, [
+                storage_path('app/public/' . dirname($setting->font_path))
+            ]);
+            $mpdfConfig['fontdata'] = $fontData + [
+                'gujarati' => [
+                    'R' => basename($setting->font_path),
+                    'useOTL' => 0xFF,
+                ]
+            ];
+        }
+
+        $mpdf = new Mpdf($mpdfConfig);
 
         $mpdf->WriteHTML($html);
 

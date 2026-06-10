@@ -32,6 +32,11 @@ class Sidebar extends Component
                 'url' => 'bill.list',
                 'icon' => 'ui.icon.bill',
             ],
+            [
+                'label' => 'Settings',
+                'url' => 'setting',
+                'icon' => 'ui.icon.settings',
+            ],
         ];
     }
 

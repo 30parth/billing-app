@@ -40,11 +40,13 @@ class BilList extends Component
         // 1. Fetch bill with relationships
         $bill = Bill::where('user_id', Auth::user()->id)->with('billProducts.product')->findOrFail($id);
 
+        $setting = Auth::user()->setting;
+
         // 2. Render the template we created earlier
-        $html = view('pdf.bill', compact('bill'))->render();
+        $html = view('pdf.bill', compact('bill', 'setting'))->render();
 
         // 3. Initialize mPDF
-        $mpdf = new Mpdf([
+        $mpdfConfig = [
             'mode' => 'utf-8',
             'format' => 'A4',
             'margin_left' => 15,
@@ -54,7 +56,27 @@ class BilList extends Component
             'margin_header' => 9,
             'margin_footer' => 9,
             'tempDir' => storage_path('app/mpdf'),
-        ]);
+        ];
+
+        // if ($setting && $setting->use_gujarati_font && $setting->font_path && file_exists(storage_path('app/public/' . $setting->font_path))) {
+        //     $defaultConfig = (new \Mpdf\Config\ConfigVariables())->getDefaults();
+        //     $fontDirs = $defaultConfig['fontDir'];
+
+        //     $defaultFontConfig = (new \Mpdf\Config\FontVariables())->getDefaults();
+        //     $fontData = $defaultFontConfig['fontdata'];
+
+        //     $mpdfConfig['fontDir'] = array_merge($fontDirs, [
+        //         storage_path('app/public/' . dirname($setting->font_path))
+        //     ]);
+        //     $mpdfConfig['fontdata'] = $fontData + [
+        //         'gujarati' => [
+        //             'R' => basename($setting->font_path),
+        //             'useOTL' => 0xFF,
+        //         ]
+        //     ];
+        // }
+
+        $mpdf = new Mpdf($mpdfConfig);
 
         $mpdf->WriteHTML($html);
 

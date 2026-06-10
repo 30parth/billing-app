@@ -23,6 +23,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::livewire('/dashboard', 'dashboard.dashboard')->name('dashboard');
+    Route::livewire('/settings', 'setting.setting-form')->name('setting');
 
     Route::prefix('product')->name('product.')->group(function () {
         Route::livewire('/', 'product.product-list')->name('list');

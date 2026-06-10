@@ -22,6 +22,11 @@ class User extends Authenticatable
         return $this->hasMany(Bill::class);
     }
 
+    public function setting()
+    {
+        return $this->hasOne(Setting::class);
+    }
+
     public function billProducts()
     {
         return $this->hasMany(BillProduct::class);

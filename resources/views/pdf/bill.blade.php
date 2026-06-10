@@ -1,3 +1,6 @@
+@php
+    $setting = $setting ?? null;
+@endphp
 <!DOCTYPE html>
 <html>
 
@@ -6,7 +9,11 @@
     <title>Invoice No: {{ $bill->bill_no }}</title>
     <style>
         body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            @if($setting && $setting->use_gujarati_font)
+                font-family: 'gujarati', sans-serif;
+            @else
+                font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            @endif
             font-size: 11px;
             color: #000;
             margin: 0;
@@ -154,10 +161,38 @@
             <td width="50%" style="padding: 0;">
                 <table class="inner-table" style="margin-top: 5px; margin-bottom: 5px;">
                     <tr>
-                        <td width="20%">Name</td>
+                        <td width="25%">Name</td>
                         <td width="5%">:</td>
-                        <td width="75%" class="font-bold">Bharat Vara</td>
+                        <td width="70%" class="font-bold">{{ $setting->company_name ?? 'Bharat Vara' }}</td>
                     </tr>
+                    @if($setting && $setting->company_address)
+                    <tr>
+                        <td>Address</td>
+                        <td>:</td>
+                        <td style="font-size: 10px;">{{ $setting->company_address }}</td>
+                    </tr>
+                    @endif
+                    @if($setting && $setting->company_phone)
+                    <tr>
+                        <td>Phone</td>
+                        <td>:</td>
+                        <td>{{ $setting->company_phone }}</td>
+                    </tr>
+                    @endif
+                    @if($setting && $setting->company_email)
+                    <tr>
+                        <td>Email</td>
+                        <td>:</td>
+                        <td>{{ $setting->company_email }}</td>
+                    </tr>
+                    @endif
+                    @if($setting && $setting->company_gstin)
+                    <tr>
+                        <td>GSTIN</td>
+                        <td>:</td>
+                        <td class="font-bold">{{ $setting->company_gstin }}</td>
+                    </tr>
+                    @endif
                 </table>
             </td>
         </tr>
@@ -225,8 +260,14 @@
                         </td>
                     </tr>
                     <tr>
-                        <td style="padding: 10px 5px;">
-                            <!-- Generic blank bank space as requested -->
+                        <td style="padding: 5px 10px; font-size: 10px;">
+                            @if($setting && $setting->bank_name)
+                                <div class="font-bold" style="border-bottom: 1px solid #ddd; margin-bottom: 3px;">Bank Details:</div>
+                                <div><strong>Bank:</strong> {{ $setting->bank_name }} ({{ $setting->bank_branch }})</div>
+                                <div><strong>A/C No:</strong> {{ $setting->account_no }}</div>
+                                <div><strong>IFSC:</strong> {{ $setting->ifsc_code }}</div>
+                                <div><strong>Name:</strong> {{ $setting->account_holder }}</div>
+                            @endif
                         </td>
                     </tr>
                 </table>
@@ -246,9 +287,14 @@
                             <!-- QR Space -->
                             <div style="margin-bottom: 5px; font-weight: bold;">Scan to Pay</div>
                             <div
-                                style="border: 2px solid #000; width: 100px; height: 100px; margin: 0 auto; display: table;">
-                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABAAQMAAACQp+OdAAAABlBMVEX///8AAABVwtN+AAAAxElEQVQoz2P4//8/A71g8gEBDa/jA/4L6BfQP0D//wI6+gD9/wP0HwjQP4B+gf//H/4P0C+go4//g4GBfAD/A/T/P8D/AfoF9P//w/8H6D9gIP+BgfwHAgT4+D/4H6BfQP//D/8H6D/QPwD0CwQEGCCeX0D//z/8H6BfQB8E6B8A+gWUBgD/H6BfQP//D/8H6D/QPwD0CwQEGCCeX0D//wP8H6BfQP//P/wfoF9ARx/QP4B+AQEGDORB9A/QP6CgDwD9D9AvgH7xHwwMBQYQfwDBi/wBAkC+AfoH6B/QP0AABgDIqNfB/z+OAAAAAElFTkSuQmCC"
-                                    style="width: 100%; height: 100%; display: block;">
+                                style="border: 2px solid #000; width: 100px; height: 100px; margin: 0 auto; overflow: hidden; padding: 2px;">
+                                @if($setting && $setting->qr_code_path && file_exists(storage_path('app/public/' . $setting->qr_code_path)))
+                                    <img src="{{ storage_path('app/public/' . $setting->qr_code_path) }}"
+                                        width="96" height="96" style="display: block; margin: 0 auto;">
+                                @else
+                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABAAQMAAACQp+OdAAAABlBMVEX///8AAABVwtN+AAAAxElEQVQoz2P4//8/A71g8gEBDa/jA/4L6BfQP0D//wI6+gD9/wP0HwjQP4B+gf//H/4P0C+go4//g4GBfAD/A/T/P8D/AfoF9P//w/8H6D9gIP+BgfwHAgT4+D/4H6BfQP//D/8H6D/QPwD0CwQEGCCeX0D//z/8H6BfQB8E6B8A+gWUBgD/H6BfQP//D/8H6D/QPwD0CwQEGCCeX0D//wP8H6BfQP//P/wfoF9ARx/QP4B+AQEGDORB9A/QP6CgDwD9D9AvgH7xHwwMBQYQfwDBi/wBAkC+AfoH6B/QP0AABgDIqNfB/z+OAAAAAElFTkSuQmCC"
+                                        width="96" height="96" style="display: block; margin: 0 auto;">
+                                @endif
                             </div>
                         </td>
                     </tr>
