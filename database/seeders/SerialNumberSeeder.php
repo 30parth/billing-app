@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\BillSeries;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class SerialNumberSeeder extends Seeder
@@ -12,9 +13,14 @@ class SerialNumberSeeder extends Seeder
      */
     public function run(): void
     {
-        BillSeries::create([
-            'prefix' => 'B_',
-            'current' => '1',
-        ]);
+        $users = User::all();
+
+        foreach ($users as $user) {
+            BillSeries::create([
+                'prefix' => 'B_',
+                'current' => '1',
+                'user_id' => $user->id,
+            ]);
+        }
     }
 }

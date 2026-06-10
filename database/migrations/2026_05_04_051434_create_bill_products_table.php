@@ -13,11 +13,13 @@ return new class extends Migration
     {
         Schema::create('bill_products', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('bill_id')->constrained('bills')->onDelete('cascade');
+            $table->foreignId('bill_id')->constrained('bills')->onDelete('restrict');
             $table->foreignId('product_id')->constrained('products')->onDelete('restrict');
             $table->string('size');
             $table->decimal('price', 10, 2);
+            $table->integer('quantity')->default(1);
             $table->decimal('total', 10, 2);
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });

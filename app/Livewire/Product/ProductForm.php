@@ -4,6 +4,7 @@ namespace App\Livewire\Product;
 
 use App\Livewire\Forms\Product\ProductForm as ProductFormModel;
 use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class ProductForm extends Component
@@ -16,7 +17,7 @@ class ProductForm extends Component
     {
         if ($id) {
             $this->id = $id;
-            $product = Product::find($id);
+            $product = Product::where('user_id', Auth::user()->id)->findOrFail($id);
             $this->form->setProduct($product);
         }
     }
@@ -26,7 +27,7 @@ class ProductForm extends Component
         $data = $this->form->validate();
 
         if ($this->id) {
-            Product::findOrFail($this->id)->update($data);
+            Product::where('user_id', Auth::user()->id)->findOrFail($this->id)->update($data);
         } else {
             Product::create($data);
         }

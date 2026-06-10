@@ -17,6 +17,26 @@ class User extends Authenticatable
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
 
+    public function bills()
+    {
+        return $this->hasMany(Bill::class);
+    }
+
+    public function billProducts()
+    {
+        return $this->hasMany(BillProduct::class);
+    }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+
+    public function billSeries()
+    {
+        return $this->hasMany(BillSeries::class);
+    }
+
     /**
      * Get the attributes that should be cast.
      *

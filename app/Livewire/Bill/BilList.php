@@ -3,6 +3,7 @@
 namespace App\Livewire\Bill;
 
 use App\Models\Bill;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithoutUrlPagination;
 use Livewire\WithPagination;
@@ -27,7 +28,7 @@ class BilList extends Component
 
     public function delete($id)
     {
-        $bill = Bill::find($id);
+        $bill = Bill::where('user_id', Auth::user()->id)->findOrFail($id);
         $bill->billProducts()->delete();
         $bill->delete();
 
@@ -37,7 +38,7 @@ class BilList extends Component
     public function downloadBill($id)
     {
         // 1. Fetch bill with relationships
-        $bill = Bill::with('billProducts.product')->findOrFail($id);
+        $bill = Bill::where('user_id', Auth::user()->id)->with('billProducts.product')->findOrFail($id);
 
         // 2. Render the template we created earlier
         $html = view('pdf.bill', compact('bill'))->render();
@@ -65,11 +66,14 @@ class BilList extends Component
 
     public function render()
     {
-        $bills = Bill::where('customer_name', 'like', "%{$this->search}%")
-            ->orWhere('bill_no', 'like', "%{$this->search}%")
-            ->orWhere('date', 'like', "%{$this->search}%")
-            ->orWhere('notes', 'like', "%{$this->search}%")
-            ->orWhere('total', 'like', "%{$this->search}%")
+        $bills = Bill::where('user_id', Auth::user()->id)
+            ->where(function ($query) {
+                $query->where('customer_name', 'like', "%{$this->search}%")
+                    ->orWhere('bill_no', 'like', "%{$this->search}%")
+                    ->orWhere('date', 'like', "%{$this->search}%")
+                    ->orWhere('notes', 'like', "%{$this->search}%")
+                    ->orWhere('total', 'like', "%{$this->search}%");
+            })
             ->orderBy('date', 'desc')
             ->paginate(10);
 

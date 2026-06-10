@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
 
 class Bill extends Model
 {
@@ -15,11 +16,30 @@ class Bill extends Model
         'customer_name',
         'notes',
         'total',
+        'user_id',
     ];
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->user_id = Auth::user()->id;
+        });
+
+        static::updating(function ($model) {
+            $model->user_id = Auth::user()->id;
+        });
+    }
 
     public function billProducts()
     {
         return $this->hasMany(BillProduct::class, 'bill_id', 'id')->whereNull('deleted_at');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
     public function getAmountInWordsAttribute()
@@ -30,8 +50,8 @@ class Bill extends Model
         $hundred = null;
         $digits_1 = strlen((string) $no);
         $i = 0;
-        $str = array();
-        $words = array('0' => '', '1' => 'One', '2' => 'Two',
+        $str = [];
+        $words = ['0' => '', '1' => 'One', '2' => 'Two',
             '3' => 'Three', '4' => 'Four', '5' => 'Five', '6' => 'Six',
             '7' => 'Seven', '8' => 'Eight', '9' => 'Nine',
             '10' => 'Ten', '11' => 'Eleven', '12' => 'Twelve',
@@ -40,8 +60,8 @@ class Bill extends Model
             '18' => 'Eighteen', '19' => 'Nineteen', '20' => 'Twenty',
             '30' => 'Thirty', '40' => 'Forty', '50' => 'Fifty',
             '60' => 'Sixty', '70' => 'Seventy',
-            '80' => 'Eighty', '90' => 'Ninety');
-        $digits = array('', 'Hundred', 'Thousand', 'Lakh', 'Crore');
+            '80' => 'Eighty', '90' => 'Ninety'];
+        $digits = ['', 'Hundred', 'Thousand', 'Lakh', 'Crore'];
         while ($i < $digits_1) {
             $divider = ($i == 2) ? 10 : 100;
             $number = floor($no % $divider);
@@ -50,19 +70,22 @@ class Bill extends Model
             if ($number) {
                 $plural = (($counter = count($str)) && $number > 9) ? 's' : null;
                 $hundred = ($counter == 1 && $str[0]) ? ' and ' : null;
-                $str [] = ($number < 21) ? $words[$number] .
-                    " " . $digits[$counter] . $plural . " " . $hundred
+                $str[] = ($number < 21) ? $words[$number].
+                    ' '.$digits[$counter].$plural.' '.$hundred
                     :
                     $words[floor($number / 10) * 10]
-                    . " " . $words[$number % 10] . " "
-                    . $digits[$counter] . $plural . " " . $hundred;
-            } else $str[] = null;
+                    .' '.$words[$number % 10].' '
+                    .$digits[$counter].$plural.' '.$hundred;
+            } else {
+                $str[] = null;
+            }
         }
         $str = array_reverse($str);
         $result = implode('', $str);
         $points = ($point) ?
-            " and " . $words[$point / 10] . " " . 
-                  $words[$point = $point % 10] . " Paise" : '';
-        return trim($result) . " Rupees" . $points . " Only";
+            ' and '.$words[$point / 10].' '.
+                  $words[$point = $point % 10].' Paise' : '';
+
+        return trim($result).' Rupees'.$points.' Only';
     }
 }

@@ -5,6 +5,7 @@ namespace App\View\Components\Dropdown;
 use App\Models\Product;
 use Closure;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\Component;
 
 class ProductDropdown extends Component
@@ -16,7 +17,7 @@ class ProductDropdown extends Component
 
     public function __construct()
     {
-        $this->products = Product::whereNull('deleted_at')->get();
+        $this->products = Product::where('user_id', Auth::user()->id)->whereNull('deleted_at')->get();
     }
 
     /**

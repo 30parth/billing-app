@@ -5,7 +5,9 @@ namespace App\Livewire\Bill;
 use App\Livewire\Forms\Bill\BillForm as Form;
 use App\Models\Bill;
 use App\Models\BillProduct;
+use App\Models\BillSeries;
 use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class BillForm extends Component
@@ -18,12 +20,12 @@ class BillForm extends Component
     {
         if ($id) {
             $this->id = $id;
-            $bill = Bill::find($id);
+            $bill = Bill::where('user_id', Auth::user()->id)->findOrFail($id);
             $this->form->setBill($bill);
         } else {
-            $series = \App\Models\BillSeries::first();
+            $series = BillSeries::where('user_id', Auth::user()->id)->first();
             if ($series) {
-                $this->form->bill_no = $series->prefix . ($series->current + 1);
+                $this->form->bill_no = $series->prefix.($series->current + 1);
             }
         }
     }
@@ -67,7 +69,7 @@ class BillForm extends Component
 
     public function updatedFormProductProductId()
     {
-        $product = Product::find($this->form->product['product_id']);
+        $product = Product::where('user_id', Auth::user()->id)->findOrFail($this->form->product['product_id']);
         $this->form->product['price'] = $product->price;
     }
 
@@ -102,7 +104,7 @@ class BillForm extends Component
         $this->form->total = collect($this->form->products)->sum('total');
 
         if ($this->id) {
-            $bill = Bill::find($this->id);
+            $bill = Bill::where('user_id', Auth::user()->id)->findOrFail($this->id);
             $bill->update([
                 'date' => $this->form->date,
                 'bill_no' => $this->form->bill_no,
@@ -121,7 +123,7 @@ class BillForm extends Component
                 'total' => $this->form->total,
             ]);
 
-            $series = \App\Models\BillSeries::first();
+            $series = BillSeries::where('user_id', Auth::user()->id)->first();
             if ($series) {
                 $series->increment('current');
             }
