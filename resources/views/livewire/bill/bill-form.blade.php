@@ -3,7 +3,7 @@
         <form wire:submit="save">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 <x-ui.form.input-with-label type="date" label="Date" name="form.date" />
-                <x-ui.form.input-with-label label="Bill No" name="form.bill_no" disabled />
+                <x-ui.form.input-with-label label="Bill No" name="form.bill_no" />
                 <x-ui.form.input-with-label label="Customer Name" name="form.customer_name" />
             </div>
             <div class="mt-4">
