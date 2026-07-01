@@ -54,4 +54,14 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    protected static function booted()
+    {
+        static::created(function ($user) {
+            $user->billSeries()->create([
+                'prefix' => 'B_',
+                'current' => 0,
+            ]);
+        });
+    }
 }

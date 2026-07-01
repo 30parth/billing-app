@@ -23,10 +23,11 @@ class BillForm extends Component
             $bill = Bill::where('user_id', Auth::user()->id)->findOrFail($id);
             $this->form->setBill($bill);
         } else {
-            $series = BillSeries::where('user_id', Auth::user()->id)->first();
-            if ($series) {
-                $this->form->bill_no = $series->prefix.($series->current + 1);
-            }
+            $series = BillSeries::firstOrCreate(
+                ['user_id' => Auth::user()->id],
+                ['prefix' => 'B_', 'current' => 0]
+            );
+            $this->form->bill_no = $series->prefix.($series->current + 1);
         }
     }
 
@@ -123,10 +124,11 @@ class BillForm extends Component
                 'total' => $this->form->total,
             ]);
 
-            $series = BillSeries::where('user_id', Auth::user()->id)->first();
-            if ($series) {
-                $series->increment('current');
-            }
+            $series = BillSeries::firstOrCreate(
+                ['user_id' => Auth::user()->id],
+                ['prefix' => 'B_', 'current' => 0]
+            );
+            $series->increment('current');
         }
 
         foreach ($this->form->products as $product) {
