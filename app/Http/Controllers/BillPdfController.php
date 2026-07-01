@@ -53,19 +53,19 @@ class BillPdfController extends Controller
             ->header('Content-Type', 'application/pdf');
     }
 
-    public function publicPreview($id)
+    public function publicPreview($token)
     {
-        $bill = Bill::with('billProducts.product')->findOrFail($id);
+        $bill = Bill::where('secure_token', $token)->with('billProducts.product')->firstOrFail();
         $setting = \App\Models\Setting::where('user_id', $bill->user_id)->first();
         
-        $downloadUrl = \Illuminate\Support\Facades\URL::signedRoute('bill.public.download', ['id' => $bill->id]);
+        $downloadUrl = route('bill.public.download', ['token' => $bill->secure_token]);
 
         return view('bill.public-preview', compact('bill', 'setting', 'downloadUrl'));
     }
 
-    public function publicDownload($id)
+    public function publicDownload($token)
     {
-        $bill = Bill::with('billProducts.product')->findOrFail($id);
+        $bill = Bill::where('secure_token', $token)->with('billProducts.product')->firstOrFail();
         $setting = \App\Models\Setting::where('user_id', $bill->user_id)->first();
 
         $html = view('pdf.bill', compact('bill', 'setting'))->render();

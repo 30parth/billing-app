@@ -18,6 +18,7 @@ class Bill extends Model
         'notes',
         'total',
         'user_id',
+        'secure_token',
     ];
 
     public static function boot()
@@ -26,6 +27,9 @@ class Bill extends Model
 
         static::creating(function ($model) {
             $model->user_id = Auth::user()->id;
+            if (!$model->secure_token) {
+                $model->secure_token = bin2hex(random_bytes(16));
+            }
         });
 
         static::updating(function ($model) {
@@ -109,9 +113,9 @@ class Bill extends Model
             $number = '91' . substr($number, 1);
         }
 
-        $signedUrl = \Illuminate\Support\Facades\URL::signedRoute('bill.public.preview', ['id' => $this->id]);
+        $publicUrl = route('bill.public.preview', ['token' => $this->secure_token]);
 
-        $message = "Hello {$this->customer_name}, your invoice {$this->bill_no} of Rs. {$this->total} is ready. View and download it here: {$signedUrl}";
+        $message = "Hello {$this->customer_name}, your invoice {$this->bill_no} of Rs. {$this->total} is ready. View and download it here: {$publicUrl}";
 
         return "https://wa.me/{$number}?text=" . urlencode($message);
     }

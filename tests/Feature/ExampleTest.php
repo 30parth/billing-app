@@ -90,8 +90,8 @@ class ExampleTest extends TestCase
             'contact_number' => '9876543210',
         ]);
 
-        $signedUrl = \Illuminate\Support\Facades\URL::signedRoute('bill.public.preview', ['id' => $bill->id]);
-        $expectedText = "Hello John Doe, your invoice B_123 of Rs. 1500.5 is ready. View and download it here: {$signedUrl}";
+        $publicUrl = route('bill.public.preview', ['token' => $bill->secure_token]);
+        $expectedText = "Hello John Doe, your invoice B_123 of Rs. 1500.5 is ready. View and download it here: {$publicUrl}";
 
         $this->assertEquals(
             'https://wa.me/919876543210?text=' . urlencode($expectedText),
@@ -122,7 +122,7 @@ class ExampleTest extends TestCase
     }
 
     /**
-     * Test guest access and signed URL security constraints.
+     * Test guest access and secure token security constraints.
      */
     public function test_public_invoice_guest_access_and_security(): void
     {
@@ -152,31 +152,24 @@ class ExampleTest extends TestCase
         $this->post('/logout');
         $this->assertGuest();
 
-        // 1. Generate standard valid signed URL
-        $signedUrl = \Illuminate\Support\Facades\URL::signedRoute('bill.public.preview', ['id' => $bill->id]);
+        // 1. Generate standard valid token URL
+        $tokenUrl = route('bill.public.preview', ['token' => $bill->secure_token]);
 
-        // 2. Guest can access the page with the signed URL
-        $response = $this->get($signedUrl);
+        // 2. Guest can access the page with the valid token URL
+        $response = $this->get($tokenUrl);
         $response->assertStatus(200);
         $response->assertSee('Guest Customer');
         $response->assertSee('Acme Corp');
         $response->assertSee('B_999');
 
-        // 3. Guest cannot access without a valid signature
-        $unsignedUrl = route('bill.public.preview', ['id' => $bill->id]);
-        $responseUnsigned = $this->get($unsignedUrl);
-        $responseUnsigned->assertStatus(403);
+        // 3. Guest cannot access with an invalid/tampered token (404)
+        $invalidTokenUrl = route('bill.public.preview', ['token' => 'invalidtoken12345']);
+        $responseInvalid = $this->get($invalidTokenUrl);
+        $responseInvalid->assertStatus(404);
 
-        // 4. Guest cannot access another invoice by changing the ID
-        $anotherBillId = $bill->id + 1;
-        // Construct tampered URL using signature of the original bill
-        $tamperedUrl = str_replace("invoice/{$bill->id}", "invoice/{$anotherBillId}", $signedUrl);
-        $responseTampered = $this->get($tamperedUrl);
-        $responseTampered->assertStatus(403);
-
-        // 5. Guest can download PDF using signed download URL
-        $signedDownloadUrl = \Illuminate\Support\Facades\URL::signedRoute('bill.public.download', ['id' => $bill->id]);
-        $responseDownload = $this->get($signedDownloadUrl);
+        // 4. Guest can download PDF using token-based download URL
+        $downloadUrl = route('bill.public.download', ['token' => $bill->secure_token]);
+        $responseDownload = $this->get($downloadUrl);
         $responseDownload->assertStatus(200);
         $responseDownload->assertHeader('Content-Type', 'application/pdf');
     }

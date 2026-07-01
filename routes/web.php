@@ -19,8 +19,8 @@ Route::middleware('guest')->group(function () {
 
 });
 
-Route::get('/invoice/{id}', [BillPdfController::class, 'publicPreview'])->name('bill.public.preview')->middleware('signed');
-Route::get('/invoice/{id}/download', [BillPdfController::class, 'publicDownload'])->name('bill.public.download')->middleware('signed');
+Route::get('/invoice/{token}', [BillPdfController::class, 'publicPreview'])->name('bill.public.preview');
+Route::get('/invoice/{token}/download', [BillPdfController::class, 'publicDownload'])->name('bill.public.download');
 
 Route::middleware('auth')->group(function () {
 
