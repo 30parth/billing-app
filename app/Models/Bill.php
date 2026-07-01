@@ -109,7 +109,9 @@ class Bill extends Model
             $number = '91' . substr($number, 1);
         }
 
-        $message = "Hello {$this->customer_name}, your bill ({$this->bill_no}) total is Rs. {$this->total}. Thank you!";
+        $signedUrl = \Illuminate\Support\Facades\URL::signedRoute('bill.public.preview', ['id' => $this->id]);
+
+        $message = "Hello {$this->customer_name}, your invoice {$this->bill_no} of Rs. {$this->total} is ready. View and download it here: {$signedUrl}";
 
         return "https://wa.me/{$number}?text=" . urlencode($message);
     }

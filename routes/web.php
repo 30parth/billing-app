@@ -18,6 +18,10 @@ Route::middleware('guest')->group(function () {
     Route::get('auth/google/callback', [GoogleAuthController::class, 'callback'])->name('google.callback');
 
 });
+
+Route::get('/invoice/{id}', [BillPdfController::class, 'publicPreview'])->name('bill.public.preview')->middleware('signed');
+Route::get('/invoice/{id}/download', [BillPdfController::class, 'publicDownload'])->name('bill.public.download')->middleware('signed');
+
 Route::middleware('auth')->group(function () {
 
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
