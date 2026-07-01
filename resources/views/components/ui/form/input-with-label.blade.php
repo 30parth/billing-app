@@ -11,6 +11,7 @@
     @endif
     <input type="{{ $type }}" id="{{ $id }}"
         @if ($attributes->has('is-live')) wire:model.live="{{ $name }}"
+        @elseif ($attributes->has('is-blur')) wire:model.blur.live="{{ $name }}"
         @else
             wire:model="{{ $name }}" @endif
         {{ $attributes->except('is-live') }}

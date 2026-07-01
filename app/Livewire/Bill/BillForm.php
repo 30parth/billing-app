@@ -7,6 +7,7 @@ use App\Models\Bill;
 use App\Models\BillProduct;
 use App\Models\BillSeries;
 use App\Models\Product;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -18,6 +19,7 @@ class BillForm extends Component
 
     public function mount($id = null)
     {
+        $this->form->date = Carbon::today()->format('Y-m-d');
         if ($id) {
             $this->id = $id;
             $bill = Bill::where('user_id', Auth::user()->id)->findOrFail($id);
@@ -35,21 +37,12 @@ class BillForm extends Component
     {
         $this->form->validate([
             'product.product_id' => 'required',
+            'product.unit' => 'required|in:feet,inch',
             'product.size' => ['required', 'regex:/^\d+(\.\d+)?(x\d+(\.\d+)?)?$/'],
             'product.price' => 'required|numeric|min:1',
         ], [
             'product.size.regex' => 'Size must be a number or in numberxnumber format (e.g., 5 or 5x5.5)',
         ]);
-
-        $new = $this->form->product['product_id'];
-
-        foreach ($this->form->products as $p) {
-            if ($p['product_id'] == $new) {
-                $this->addError('form.product.product_id', 'Product is Already in list');
-
-                return;
-            }
-        }
 
         $this->form->products[] = $this->form->product;
 
@@ -57,6 +50,7 @@ class BillForm extends Component
 
         $this->form->product = [
             'product_id' => '',
+            'unit' => 'feet',
             'size' => '',
             'price' => '',
             'total' => '',
@@ -74,13 +68,23 @@ class BillForm extends Component
         $this->form->product['price'] = $product->price;
     }
 
+    public function updatedFormProductUnit()
+    {
+        $this->updatedFormProductSize();
+        $this->updatedFormProductPrice();
+    }
+
     public function updatedFormProductSize()
     {
         if ($this->form->product['size']) {
             $total_size = 1;
             $size = explode('x', $this->form->product['size']);
             foreach ($size as $s) {
-                $total_size *= (float) $s;
+                if ($this->form->product['unit'] == 'inch') {
+                    $total_size *= (float) $s / 12;
+                } else {
+                    $total_size *= (float) $s;
+                }
             }
             $this->form->product['total'] = (float) ($this->form->product['price'] ?? 0) * $total_size;
         }
@@ -92,7 +96,11 @@ class BillForm extends Component
             $total_size = 1;
             $size = explode('x', $this->form->product['size'] ?? '0');
             foreach ($size as $s) {
-                $total_size *= (float) $s;
+                if ($this->form->product['unit'] == 'inch') {
+                    $total_size *= (float) $s / 12;
+                } else {
+                    $total_size *= (float) $s;
+                }
             }
             $this->form->product['total'] = (float) ($this->form->product['price'] ?? 0) * $total_size;
         }
@@ -135,6 +143,7 @@ class BillForm extends Component
             BillProduct::create([
                 'bill_id' => $bill->id,
                 'product_id' => $product['product_id'],
+                'unit' => $product['unit'],
                 'size' => $product['size'],
                 'price' => $product['price'],
                 'total' => $product['total'],

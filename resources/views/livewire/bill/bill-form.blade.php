@@ -14,6 +14,7 @@
                     <x-ui.table.head>
                         <x-ui.table.row>
                             <x-ui.table.th>Product</x-ui.table.th>
+                            <x-ui.table.th>Unit</x-ui.table.th>
                             <x-ui.table.th>Size</x-ui.table.th>
                             <x-ui.table.th>Price</x-ui.table.th>
                             <x-ui.table.th>Total</x-ui.table.th>
@@ -26,6 +27,10 @@
                                 <x-ui.table.td>
                                     <x-dropdown.product-dropdown name="form.products.{{ $index }}.product_id"
                                         disabled no-label />
+                                </x-ui.table.td>
+                                <x-ui.table.td>
+                                    <x-dropdown.unit-dropdown name="form.products.{{ $index }}.unit" disabled
+                                        no-label />
                                 </x-ui.table.td>
                                 <x-ui.table.td>
                                     <x-ui.form.input-with-label label="Size"
@@ -51,11 +56,14 @@
                                 <x-dropdown.product-dropdown name="form.product.product_id" is-live no-label />
                             </x-ui.table.td>
                             <x-ui.table.td>
-                                <x-ui.form.input-with-label label="Size" name="form.product.size" is-live no-label />
+                                <x-dropdown.unit-dropdown name="form.product.unit" is-live no-label />
+                            </x-ui.table.td>
+                            <x-ui.table.td>
+                                <x-ui.form.input-with-label label="Size" name="form.product.size" is-blur no-label />
                             </x-ui.table.td>
                             <x-ui.table.td>
                                 <x-ui.form.input-with-label type="number" label="Price" name="form.product.price"
-                                    is-live no-label />
+                                    is-blur no-label />
                             </x-ui.table.td>
                             <x-ui.table.td>
                                 <x-ui.form.input-with-label label="Total" name="form.product.total" no-label
@@ -73,10 +81,6 @@
             <div class="mt-6 flex justify-between">
                 <div class="flex gap-2">
                     <x-ui.button variant="secondary" wire:click="backToListView">Cancel</x-ui.button>
-                    @if ($id)
-                        <x-ui.button type="button" variant="secondary"
-                            onclick="window.open('{{ route('bill.pdf', $id) }}', '_blank')">Download PDF</x-ui.button>
-                    @endif
                 </div>
                 <x-ui.button type="submit">Save</x-ui.button>
             </div>

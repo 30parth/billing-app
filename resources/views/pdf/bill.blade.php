@@ -204,7 +204,8 @@
                     <thead>
                         <tr>
                             <th width="8%" style="border-top: none; border-left: none;">Sr. No.</th>
-                            <th width="42%" style="border-top: none;">Name of product</th>
+                            <th width="32%" style="border-top: none;">Name of product</th>
+                            <th width="10%" style="border-top: none;">Unit</th>
                             <th width="15%" style="border-top: none;">Size</th>
                             <th width="15%" style="border-top: none;">Rate</th>
                             <th width="20%" style="border-top: none; border-right: none;">Total</th>
@@ -215,6 +216,7 @@
                             <tr class="item-row">
                                 <td style="border-left: none;">{{ $index + 1 }}</td>
                                 <td class="text-left font-bold">{{ $item->product->name ?? 'N/A' }}</td>
+                                <td>{{ ucfirst($item->unit ?? '') }}</td>
                                 <td>{{ $item->size }}</td>
                                 <td class="text-right">{{ number_format($item->price, 2) }}</td>
                                 <td class="text-right" style="border-right: none;">{{ number_format($item->total, 2) }}
@@ -228,12 +230,13 @@
                             <td></td>
                             <td></td>
                             <td></td>
+                            <td></td>
                             <td style="border-right: none;"></td>
                         </tr>
 
                         <!-- TOTAL ROW -->
                         <tr>
-                            <th colspan="4" class="text-right font-bold" style="border-left: none;">Total Quantity:
+                            <th colspan="5" class="text-right font-bold" style="border-left: none;">Total Quantity:
                                 {{ $bill->billProducts->count() }} &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; Total Invoice
                                 Amount</th>
                             <th class="text-right font-bold" style="border-right: none; font-size: 14px;">

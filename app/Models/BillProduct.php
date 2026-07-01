@@ -14,6 +14,7 @@ class BillProduct extends Model
     protected $fillable = [
         'bill_id',
         'product_id',
+        'unit',
         'size',
         'price',
         'total',

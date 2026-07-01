@@ -21,6 +21,7 @@ class BillForm extends Form
 
     public $product = [
         'product_id' => '',
+        'unit' => 'feet',
         'size' => '',
         'price' => '',
         'total' => '',
@@ -35,6 +36,7 @@ class BillForm extends Form
             'total' => 'required',
             'products' => 'required',
             'products.*.product_id' => 'required',
+            'products.*.unit' => 'required|in:feet,inch',
             'products.*.size' => ['required', 'regex:/^\d+(\.\d+)?(x\d+(\.\d+)?)?$/'],
             'products.*.price' => 'required|numeric|min:1',
             'products.*.total' => 'required|numeric',
@@ -51,6 +53,8 @@ class BillForm extends Form
             'total.required' => 'Total is required',
             'products.required' => 'Products is required',
             'products.*.product_id.required' => 'Product is required',
+            'products.*.unit.required' => 'Unit is required',
+            'products.*.unit.in' => 'Unit must be feet or inch',
             'products.*.size.required' => 'Size is required',
             'products.*.size.regex' => 'Size must be a number or in numberxnumber format (e.g., 5 or 5x5.5)',
             'products.*.price.required' => 'Price is required',
@@ -86,7 +90,11 @@ class BillForm extends Form
             $size = explode('x', $value);
             $total_size = 1;
             foreach ($size as $s) {
-                $total_size *= (float) $s;
+                if ($product['unit'] == 'inch') {
+                    $total_size *= (float) $s / 12;
+                } else {
+                    $total_size *= (float) $s;
+                }
             }
             $product['total'] = (float) $product['price'] * $total_size;
         }
@@ -95,7 +103,11 @@ class BillForm extends Form
             $size = explode('x', $product['size']);
             $total_size = 1;
             foreach ($size as $s) {
-                $total_size *= (float) $s;
+                if ($product['unit'] == 'inch') {
+                    $total_size *= (float) $s / 12;
+                } else {
+                    $total_size *= (float) $s;
+                }
             }
             $product['total'] = (float) $value * $total_size;
         }
