@@ -68,4 +68,47 @@ class ExampleTest extends TestCase
                 ->assertHasErrors(['form.contact_number']);
         }
     }
+
+    /**
+     * Test whatsapp url generation formats.
+     */
+    public function test_whatsapp_url_generation(): void
+    {
+        $bill = new \App\Models\Bill();
+        $bill->customer_name = 'John Doe';
+        $bill->bill_no = 'B_123';
+        $bill->total = 1500.50;
+
+        // Test with raw 10 digits
+        $bill->contact_number = '9876543210';
+        $this->assertEquals(
+            'https://wa.me/919876543210?text=' . urlencode('Hello John Doe, your bill (B_123) total is Rs. 1500.5. Thank you!'),
+            $bill->whatsapp_url
+        );
+
+        // Test with +91 country code
+        $bill->contact_number = '+919876543210';
+        $this->assertEquals(
+            'https://wa.me/919876543210?text=' . urlencode('Hello John Doe, your bill (B_123) total is Rs. 1500.5. Thank you!'),
+            $bill->whatsapp_url
+        );
+
+        // Test with 91 country code
+        $bill->contact_number = '919876543210';
+        $this->assertEquals(
+            'https://wa.me/919876543210?text=' . urlencode('Hello John Doe, your bill (B_123) total is Rs. 1500.5. Thank you!'),
+            $bill->whatsapp_url
+        );
+
+        // Test with leading 0
+        $bill->contact_number = '09876543210';
+        $this->assertEquals(
+            'https://wa.me/919876543210?text=' . urlencode('Hello John Doe, your bill (B_123) total is Rs. 1500.5. Thank you!'),
+            $bill->whatsapp_url
+        );
+
+        // Test with empty contact number
+        $bill->contact_number = '';
+        $this->assertEquals('#', $bill->whatsapp_url);
+    }
 }

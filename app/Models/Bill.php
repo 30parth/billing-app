@@ -89,4 +89,28 @@ class Bill extends Model
 
         return trim($result).' Rupees'.$points.' Only';
     }
+
+    public function getWhatsappUrlAttribute()
+    {
+        if (!$this->contact_number) {
+            return '#';
+        }
+
+        // Clean the contact number to keep only digits
+        $number = preg_replace('/\D/', '', $this->contact_number);
+
+        // Standardize Indian mobile number: if 10 digits, prepend 91
+        if (strlen($number) === 10) {
+            $number = '91' . $number;
+        }
+
+        // If it starts with 0 and is 11 digits, replace leading 0 with 91
+        if (strlen($number) === 11 && str_starts_with($number, '0')) {
+            $number = '91' . substr($number, 1);
+        }
+
+        $message = "Hello {$this->customer_name}, your bill ({$this->bill_no}) total is Rs. {$this->total}. Thank you!";
+
+        return "https://wa.me/{$number}?text=" . urlencode($message);
+    }
 }

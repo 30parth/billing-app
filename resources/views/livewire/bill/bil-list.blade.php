@@ -37,13 +37,18 @@
                                 <div class="cursor-pointer" wire:click="downloadBill('{{ $bill->id }}')">
                                     <x-ui.icon.printer />
                                 </div>
+                                @if ($bill->contact_number)
+                                    <a href="{{ $bill->whatsapp_url }}" target="_blank"
+                                        class="cursor-pointer ml-1 text-green-500 hover:text-green-600">
+                                        <x-ui.icon.whatsapp />
+                                    </a>
+                                @endif
                             </x-common.action-button>
                         </x-ui.table.td>
                     </x-ui.table.row>
                 @endforeach
             </x-ui.table.body>
         </x-ui.table>
-
         {{ $bills->links() }}
     </div>
 </div>
