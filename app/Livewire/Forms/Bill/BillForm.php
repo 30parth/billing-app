@@ -13,6 +13,8 @@ class BillForm extends Form
 
     public $customer_name;
 
+    public $contact_number;
+
     public $notes;
 
     public $total;
@@ -33,6 +35,7 @@ class BillForm extends Form
             'date' => 'required',
             'bill_no' => 'required',
             'customer_name' => 'required',
+            'contact_number' => ['required', 'regex:/^(?:\+91|91|0)?[6-9]\d{9}$/'],
             'total' => 'required',
             'products' => 'required',
             'products.*.product_id' => 'required',
@@ -49,6 +52,8 @@ class BillForm extends Form
             'date.required' => 'Date is required',
             'bill_no.required' => 'Bill No is required',
             'customer_name.required' => 'Customer Name is required',
+            'contact_number.required' => 'Contact number is required',
+            'contact_number.regex' => 'Please enter a valid 10-digit Indian contact number',
             'notes.nullable' => 'Notes is optional',
             'total.required' => 'Total is required',
             'products.required' => 'Products is required',
@@ -70,6 +75,7 @@ class BillForm extends Form
         $this->date = $bill->date;
         $this->bill_no = $bill->bill_no;
         $this->customer_name = $bill->customer_name;
+        $this->contact_number = $bill->contact_number;
         $this->notes = $bill->notes;
         $this->total = $bill->total;
         $this->products = $bill->billProducts->toArray();

@@ -118,6 +118,7 @@ class BillForm extends Component
                 'date' => $this->form->date,
                 'bill_no' => $this->form->bill_no,
                 'customer_name' => $this->form->customer_name,
+                'contact_number' => $this->form->contact_number,
                 'notes' => $this->form->notes,
                 'total' => $this->form->total,
             ]);
@@ -128,6 +129,7 @@ class BillForm extends Component
                 'date' => $this->form->date,
                 'bill_no' => $this->form->bill_no,
                 'customer_name' => $this->form->customer_name,
+                'contact_number' => $this->form->contact_number,
                 'notes' => $this->form->notes,
                 'total' => $this->form->total,
             ]);

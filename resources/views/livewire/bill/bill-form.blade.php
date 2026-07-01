@@ -1,10 +1,11 @@
 <div class="p-4">
     <x-ui.card title="Bill">
         <form wire:submit="save">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 <x-ui.form.input-with-label type="date" label="Date" name="form.date" />
                 <x-ui.form.input-with-label label="Bill No" name="form.bill_no" />
                 <x-ui.form.input-with-label label="Customer Name" name="form.customer_name" />
+                <x-ui.form.input-with-label label="Contact Number" name="form.contact_number" />
             </div>
             <div class="mt-4">
                 <x-ui.form.input-with-label label="Notes" name="form.notes" />

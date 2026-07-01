@@ -156,6 +156,13 @@
                         <td width="5%">:</td>
                         <td width="75%" class="font-bold">{{ $bill->customer_name }}</td>
                     </tr>
+                    @if($bill->contact_number)
+                    <tr>
+                        <td width="20%">Contact</td>
+                        <td width="5%">:</td>
+                        <td width="75%" class="font-bold">{{ $bill->contact_number }}</td>
+                    </tr>
+                    @endif
                 </table>
             </td>
             <td width="50%" style="padding: 0;">

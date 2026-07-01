@@ -36,4 +36,36 @@ class ExampleTest extends TestCase
             'current' => 0,
         ]);
     }
+
+    /**
+     * Test validation rules for Indian contact numbers.
+     */
+    public function test_contact_number_validation(): void
+    {
+        $user = \App\Models\User::create([
+            'name' => 'Test User',
+            'email' => 'test_' . uniqid() . '@example.com',
+            'password' => bcrypt('password'),
+        ]);
+
+        // Valid Indian numbers
+        $validNumbers = ['9876543210', '+919876543210', '919876543210', '09876543210', '7890123456', '8901234567', '6789012345'];
+        foreach ($validNumbers as $number) {
+            \Livewire\Livewire::actingAs($user)
+                ->test(\App\Livewire\Bill\BillForm::class)
+                ->set('form.contact_number', $number)
+                ->call('save')
+                ->assertHasNoErrors(['form.contact_number']);
+        }
+
+        // Invalid numbers
+        $invalidNumbers = ['1234567890', '5876543210', '987654321', '98765432100', 'abcdefghij', '+911234567890'];
+        foreach ($invalidNumbers as $number) {
+            \Livewire\Livewire::actingAs($user)
+                ->test(\App\Livewire\Bill\BillForm::class)
+                ->set('form.contact_number', $number)
+                ->call('save')
+                ->assertHasErrors(['form.contact_number']);
+        }
+    }
 }

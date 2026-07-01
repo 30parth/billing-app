@@ -14,6 +14,7 @@ class Bill extends Model
         'date',
         'bill_no',
         'customer_name',
+        'contact_number',
         'notes',
         'total',
         'user_id',
