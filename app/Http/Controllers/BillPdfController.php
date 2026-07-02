@@ -25,6 +25,7 @@ class BillPdfController extends Controller
             'margin_bottom' => 16,
             'margin_header' => 9,
             'margin_footer' => 9,
+            'tempDir' => storage_path('app/mpdf'),
         ];
 
         if ($setting && $setting->use_gujarati_font && $setting->font_path && file_exists(storage_path('app/public/' . $setting->font_path))) {
@@ -79,6 +80,7 @@ class BillPdfController extends Controller
             'margin_bottom' => 16,
             'margin_header' => 9,
             'margin_footer' => 9,
+            'tempDir' => storage_path('app/mpdf'),
         ];
 
         if ($setting && $setting->use_gujarati_font && $setting->font_path && file_exists(storage_path('app/public/' . $setting->font_path))) {
