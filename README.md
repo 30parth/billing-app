@@ -1,58 +1,183 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🧾 BillApp — Modern Billing & Invoice Management System
 
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  <img src="https://img.shields.io/badge/Laravel-11%2B-red?style=for-the-badge&logo=laravel" alt="Laravel 11+">
+  <img src="https://img.shields.io/badge/Livewire-v3-4f46e5?style=for-the-badge&logo=livewire" alt="Livewire v3">
+  <img src="https://img.shields.io/badge/Tailwind_CSS-v4-06b6d4?style=for-the-badge&logo=tailwind-css" alt="Tailwind CSS v4">
+  <img src="https://img.shields.io/badge/PHP-8.4-777bb4?style=for-the-badge&logo=php" alt="PHP 8.4">
+  <img src="https://img.shields.io/badge/Docker-Ready-2496ed?style=for-the-badge&logo=docker" alt="Docker Ready">
 </p>
 
-## About Laravel
+**BillApp** is a self-hosted, lightweight, and modern invoicing application designed for business owners and freelancers. It offers dynamic invoice creation, product catalog management, custom invoice number sequencing, and regional font PDF generation (such as Gujarati fonts). It also provides a seamless way to share secure download links with clients over WhatsApp or SMS.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## ✨ Key Features
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **📊 Dynamic Dashboard:** Get an overview of your sales metrics, invoice counts, and client activity in real-time.
+- **🛍️ Product Management:** Maintain a reusable catalog of products with prices and support for custom metrics (e.g., *Kg*, *Pcs*, *Mtr*).
+- **🧾 Flexible Bill Series:** Support for automatic, user-customized invoice numbering using custom prefixes (e.g., `INV-2026-`).
+- **🔤 Regional Font PDF Support:** Seamless PDF generation powered by `mPDF`. Fully supports Unicode characters and custom regional fonts (e.g., Gujarati) uploaded directly by the user.
+- **🔗 WhatsApp & Public Sharing:** Generate unique, secure links (`/invoice/{token}`) to share with clients. Clients can preview the invoice in a beautiful mobile-responsive screen and download the PDF directly without authentication.
+- **🔑 Google OAuth Login:** Quick sign-in using Google accounts (powered by Laravel Socialite) alongside standard password authentication.
+- **🐳 Multi-Stage Dockerization:** Optimized production-ready `Dockerfile` using multi-stage builds and SQLite, making it plug-and-play for platforms like Render or Heroku.
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 🛠️ Tech Stack
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **Backend:** Laravel 11.x, PHP 8.4
+- **Frontend:** Livewire v3, Alpine.js, Tailwind CSS v4, Flowbite
+- **PDF Generation:** mPDF 8.x (with custom cache directory configurations for read-only systems)
+- **Authentication:** Laravel Breeze, Laravel Socialite (Google Sign-In)
+- **Database:** SQLite (default/production), MySQL support available
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+---
 
-## Agentic Development
+## 📂 Project Architecture & Key Directories
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
-
-```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+```yaml
+app/
+ ├── Http/
+ │    └── Controllers/
+ │         ├── AuthController.php        # Default authentication actions
+ │         ├── BillPdfController.php     # PDF compiling, public previews, and streaming
+ │         └── GoogleAuthController.php   # Google OAuth callback & user provisioning
+ ├── Livewire/                           # Core Livewire v3 components
+ │    ├── Auth/                          # Login and Register reactive panels
+ │    ├── Bill/                          # Bill listing and invoice builder (BillForm)
+ │    ├── Dashboard/                     # Sales statistics widgets
+ │    ├── Forms/                         # Livewire Form Objects separating state & validation
+ │    ├── Product/                       # Product inventory control
+ │    └── Setting/                       # Company profile, bank information, & font settings
+ └── Models/
+      ├── User.php                       # User model
+      ├── Setting.php                    # Company metadata, bank accounts, and invoice style configs
+      ├── Product.php                    # Product definition details
+      ├── Bill.php                       # Bill metadata (date, customer name, total, tokens)
+      ├── BillProduct.php                # Pivot table items mapped to invoices (quantity, size, unit)
+      └── BillSeries.php                 # Current prefix and tracking index for bill numbering
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+---
 
-## Contributing
+## ⚙️ Local Development Setup
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Prerequisites
+- PHP >= 8.2 (with `gd`, `zip`, `sqlite3`, `intl`, `bcmath` extensions enabled)
+- Composer
+- Node.js & NPM
+- SQLite (or MySQL)
 
-## Code of Conduct
+### Installation Steps
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+1. **Clone the Repository:**
+   ```bash
+   git clone <repository-url>
+   cd bill-app
+   ```
 
-## Security Vulnerabilities
+2. **Install PHP & Node Dependencies:**
+   ```bash
+   composer install
+   npm install
+   ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+3. **Configure Environment File:**
+   Copy the example environment file:
+   ```bash
+   cp .env.example .env
+   ```
+   *Note: Ensure `DB_CONNECTION` is set to `sqlite` for zero-configuration, or fill out your MySQL parameters.*
 
-## License
+4. **Initialize SQLite Database:**
+   ```bash
+   # Create a blank SQLite file if using SQLite
+   touch database/database.sqlite
+   ```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+5. **Generate App Key & Run Migrations:**
+   ```bash
+   php artisan key:generate
+   php artisan migrate
+   ```
+
+6. **Build Asset Bundle:**
+   ```bash
+   npm run build
+   ```
+
+7. **Start Development Server:**
+   ```bash
+   php artisan serve
+   # In another terminal window:
+   npm run dev
+   ```
+   Open `http://localhost:8000` in your web browser.
+
+---
+
+## 🔑 Google Authentication Configuration
+
+To enable Google login, ensure you have set up a project in the Google Cloud Console and added the redirect URI: `http://localhost:8000/auth/google/callback`.
+
+Then, add the credentials to your `.env` file:
+```env
+GOOGLE_CLIENT_ID="your-google-client-id"
+GOOGLE_CLIENT_SECRET="your-google-client-secret"
+GOOGLE_REDIRECT_URI="${APP_URL}/auth/google/callback"
+```
+
+---
+
+## 🐳 Running with Docker
+
+This project comes ready with an optimized, multi-stage `Dockerfile` suitable for production deployments.
+
+### Local Build and Run
+1. **Build the Image:**
+   ```bash
+   docker build -t bill-app .
+   ```
+
+2. **Run the Container:**
+   ```bash
+   docker run -p 8080:80 \
+     -e APP_KEY="Base64EncodedKeyHere..." \
+     -e DB_CONNECTION=sqlite \
+     -e APP_ENV=production \
+     bill-app
+   ```
+   The application will be accessible at `http://localhost:8080`.
+
+---
+
+## 🚀 Production Deployment on Render
+
+This project is pre-configured for direct deployments on **Render.com** (using the Web Service option with Docker runtime).
+
+1. **Deploy Settings on Render:**
+   - **Runtime:** `Docker`
+   - **Environment Variables:**
+     - `APP_KEY`: *(Generate a secure key using `php artisan key:generate --show`)*
+     - `DB_CONNECTION`: `sqlite`
+     - `APP_ENV`: `production`
+     - `APP_DEBUG`: `false`
+     - `APP_URL`: `https://your-app-name.onrender.com`
+2. **Persistent Disk Storage:**
+   To persist SQLite database files and uploaded custom fonts/logos across redeployments:
+   - Add a Render Disk and mount it to `/var/www/html/storage`.
+   - The included `entrypoint.sh` automatically provisions the SQLite database under `/var/www/html/database/database.sqlite` (or points directly to your mounted path if configured).
+
+---
+
+## 🔏 Custom Font (Gujarati / regional) Setup
+For generating bills with regional scripts like Gujarati, navigate to the **Settings** page:
+1. Enable the **"Use Gujarati Font"** switch.
+2. Upload a custom TrueType Font (`.ttf` file) containing the script glyphs.
+3. The system will store the font in `storage/app/public` and load it dynamically during invoice compilation using mPDF's configuration settings.
+
+---
+
+## 📄 License
+This application is open-source software licensed under the [MIT License](https://opensource.org/licenses/MIT).
