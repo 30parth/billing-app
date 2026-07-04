@@ -5,11 +5,11 @@ use App\Http\Controllers\BillPdfController;
 use App\Http\Controllers\GoogleAuthController;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware('guest')->group(function () {
+Route::get('/', function () {
+    return view('home');
+})->name('home');
 
-    Route::get('/', function () {
-        return redirect()->route('login');
-    })->name('home');
+Route::middleware('guest')->group(function () {
 
     Route::livewire('login', 'auth.login')->name('login');
     Route::livewire('register', 'auth.register')->name('register');
