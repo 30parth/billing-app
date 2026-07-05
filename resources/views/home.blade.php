@@ -116,7 +116,7 @@
                     </h1>
 
                     <p class="text-lg text-slate-600 dark:text-slate-400 max-w-2xl leading-relaxed">
-                        BillPro is a sleek, easy-to-use billing system designed for business owners, shopkeepers, and freelancers. Effortlessly manage your items and prices, create custom invoice numbers, print bills in local languages (like Gujarati and Hindi), and share professional invoices instantly on WhatsApp.
+                        BillPro is a sleek, easy-to-use billing system designed for business owners, shopkeepers, and freelancers. Effortlessly manage your items and prices, create custom invoice numbers, and share professional invoices instantly on WhatsApp.
                     </p>
 
                     <div class="flex flex-wrap gap-4 pt-2">
@@ -325,12 +325,12 @@
                 <div class="group bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 rounded-2xl p-8 hover:shadow-xl hover:border-blue-500/30 dark:hover:border-blue-500/20 hover:-translate-y-1 transition-all duration-300">
                     <div class="p-3 bg-blue-50 dark:bg-blue-950/50 rounded-xl text-blue-600 dark:text-blue-400 w-fit mb-6 group-hover:scale-110 transition-transform duration-300">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5c-.313 1.565-.927 3.054-1.814 4.385m1.814-4.385a19.07 19.07 0 013.268 4.385m-3.268-4.385V3m-2.4 13.5H3.6"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Local Language Support</h3>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Automatic Calculations</h3>
                     <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                        Create invoices in your local language (such as Gujarati, Hindi, and others) by uploading your business's preferred local language font.
+                        Instantly calculate sub-totals, taxes, discounts, and final amounts as you add items to your bill. No manual math needed.
                     </p>
                 </div>
 
@@ -395,7 +395,7 @@
                                 <span class="text-xs font-bold text-blue-600 dark:text-blue-400">Settings Form</span>
                                 <div class="mt-2 text-xs font-semibold text-slate-500">Business Name: <span class="text-slate-700 dark:text-slate-300">My Agency LLC</span></div>
                                 <div class="mt-1 text-xs font-semibold text-slate-500">Currency: <span class="text-slate-700 dark:text-slate-300">INR (₹)</span></div>
-                                <div class="mt-1 text-xs font-semibold text-slate-500">Local Language: <span class="text-green-500">Gujarati</span></div>
+                                <div class="mt-1 text-xs font-semibold text-slate-500">Tax Setup: <span class="text-green-500">GST / VAT Enabled</span></div>
                             </div>
                         </div>
                     </div>
@@ -544,9 +544,9 @@
                     </p>
                 </div>
                 <div class="space-y-2">
-                    <h3 class="font-bold text-slate-900 dark:text-white">Does it support regional scripts?</h3>
+                    <h3 class="font-bold text-slate-900 dark:text-white">Can I customize my invoices?</h3>
                     <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                        Yes. You can upload your preferred local font (like Gujarati or Hindi) directly in the Settings, and the system will automatically print your invoices in that language.
+                        Yes! You can add your business logo, custom billing prefixes, bank payment details, and print messages to match your style.
                     </p>
                 </div>
                 <div class="space-y-2">
