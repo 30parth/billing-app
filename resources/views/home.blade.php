@@ -21,7 +21,7 @@
                 <nav class="hidden md:flex items-center gap-6">
                     <a href="#features" class="text-sm font-medium text-slate-600 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 transition-colors">Features</a>
                     <a href="#how-it-works" class="text-sm font-medium text-slate-600 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 transition-colors">How It Works</a>
-                    <a href="#tech-stack" class="text-sm font-medium text-slate-600 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 transition-colors">Technology</a>
+                    <a href="#benefits" class="text-sm font-medium text-slate-600 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 transition-colors">Why Choose Us</a>
                     <a href="#faqs" class="text-sm font-medium text-slate-600 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 transition-colors">FAQs</a>
                 </nav>
 
@@ -74,7 +74,7 @@
                         <a href="#how-it-works" class="block py-2 px-3 text-slate-700 rounded hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800">How It Works</a>
                     </li>
                     <li>
-                        <a href="#tech-stack" class="block py-2 px-3 text-slate-700 rounded hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800">Technology</a>
+                        <a href="#benefits" class="block py-2 px-3 text-slate-700 rounded hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800">Why Choose Us</a>
                     </li>
                     <li>
                         <a href="#faqs" class="block py-2 px-3 text-slate-700 rounded hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800">FAQs</a>
@@ -107,7 +107,7 @@
                 <div class="lg:col-span-7 text-left space-y-6">
                     <div class="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50/50 px-4 py-1.5 text-sm font-semibold text-blue-700 dark:border-blue-900/30 dark:bg-blue-950/30 dark:text-blue-400">
                         <span class="flex h-2 w-2 rounded-full bg-blue-600 animate-pulse"></span>
-                        100% Free & Self-Hosted Invoicing
+                        100% Free & Private Invoicing
                     </div>
 
                     <h1 class="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-6xl dark:text-white leading-[1.1]">
@@ -116,7 +116,7 @@
                     </h1>
 
                     <p class="text-lg text-slate-600 dark:text-slate-400 max-w-2xl leading-relaxed">
-                        BillPro is a sleek, lightweight billing system designed for business owners and freelancers. Effortlessly manage your inventory, configure custom bill sequences, generate PDFs with regional languages (e.g. Gujarati script), and share secure live invoices over WhatsApp.
+                        BillPro is a sleek, easy-to-use billing system designed for business owners, shopkeepers, and freelancers. Effortlessly manage your items and prices, create custom invoice numbers, print bills in local languages (like Gujarati and Hindi), and share professional invoices instantly on WhatsApp.
                     </p>
 
                     <div class="flex flex-wrap gap-4 pt-2">
@@ -144,15 +144,15 @@
                     <div class="flex items-center gap-6 pt-4 border-t border-slate-200/50 dark:border-slate-800/50">
                         <div class="flex items-center gap-2">
                             <svg class="w-5 h-5 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
-                            <span class="text-sm font-semibold text-slate-700 dark:text-slate-300">SQLite Database</span>
+                            <span class="text-sm font-semibold text-slate-700 dark:text-slate-300">100% Private Data</span>
                         </div>
                         <div class="flex items-center gap-2">
                             <svg class="w-5 h-5 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
-                            <span class="text-sm font-semibold text-slate-700 dark:text-slate-300">Docker Support</span>
+                            <span class="text-sm font-semibold text-slate-700 dark:text-slate-300">Super Fast & Reliable</span>
                         </div>
                         <div class="flex items-center gap-2">
                             <svg class="w-5 h-5 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
-                            <span class="text-sm font-semibold text-slate-700 dark:text-slate-300">No Signup Fees</span>
+                            <span class="text-sm font-semibold text-slate-700 dark:text-slate-300">Completely Free</span>
                         </div>
                     </div>
                 </div>
@@ -208,7 +208,7 @@
                             </div>
 
                             <div class="mt-4 flex justify-between items-center text-[10px] text-slate-400 dark:text-slate-500">
-                                <span>Powered by mPDF Engine</span>
+                                <span>Professional PDF Format</span>
                                 <span class="flex items-center gap-1 text-green-500 font-semibold">
                                     <span class="h-1.5 w-1.5 bg-green-500 rounded-full"></span> Secure PDF
                                 </span>
@@ -249,18 +249,18 @@
             <div class="grid grid-cols-1 gap-8 sm:grid-cols-3 text-center">
                 <div class="space-y-2">
                     <div class="text-4xl font-extrabold text-blue-600 dark:text-blue-400">100%</div>
-                    <div class="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Self-Hosted & Private</div>
-                    <p class="text-xs text-slate-400 max-w-xs mx-auto">No vendor lock-in. Deploys using a clean SQLite file on standard platforms like Render.</p>
+                    <div class="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Safe & Private</div>
+                    <p class="text-xs text-slate-400 max-w-xs mx-auto">Your business data is stored securely. No one else has access to your invoices or customer lists.</p>
                 </div>
                 <div class="space-y-2 border-slate-200 dark:border-slate-800 sm:border-x">
                     <div class="text-4xl font-extrabold text-blue-600 dark:text-blue-400">₹0 / $0</div>
-                    <div class="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Monthly Subscriptions</div>
-                    <p class="text-xs text-slate-400 max-w-xs mx-auto">Open-source codebase. Host it yourself and use all premium invoicing features free forever.</p>
+                    <div class="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">No Monthly Fees</div>
+                    <p class="text-xs text-slate-400 max-w-xs mx-auto">Enjoy all invoicing and customer management tools completely free. No credit card required.</p>
                 </div>
                 <div class="space-y-2">
-                    <div class="text-4xl font-extrabold text-blue-600 dark:text-blue-400">&lt; 1 Second</div>
-                    <div class="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">PDF Compile Speed</div>
-                    <p class="text-xs text-slate-400 max-w-xs mx-auto">High-performance mPDF integration compiled with cache optimizations for fast downloads.</p>
+                    <div class="text-4xl font-extrabold text-blue-600 dark:text-blue-400">Instant</div>
+                    <div class="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">PDF Generation</div>
+                    <p class="text-xs text-slate-400 max-w-xs mx-auto">Generate clear, professional PDF bills with a single click. Download and share instantly.</p>
                 </div>
             </div>
         </div>
@@ -289,9 +289,9 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 002 2h2a2 2 0 002-2"></path>
                         </svg>
                     </div>
-                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Dynamic Dashboard</h3>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Sales Dashboard</h3>
                     <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                        Track important business metrics like invoice numbers, total earnings, and product sales statistics, all organized in real-time widgets.
+                        Track your total earnings, invoice counts, and top-selling products in real time from a simple sales overview.
                     </p>
                 </div>
 
@@ -302,9 +302,9 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
                         </svg>
                     </div>
-                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Product Catalog</h3>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Item & Price List</h3>
                     <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                        Store and reuse products with custom metrics (such as `Kg`, `Pcs`, `Mtr`) to speed up invoice lines creation and keep inventory prices uniform.
+                        Save your product details and rates with custom units (like kg, Pcs, or meter) to add them to your bills instantly without retyping.
                     </p>
                 </div>
 
@@ -315,9 +315,9 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14"></path>
                         </svg>
                     </div>
-                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Flexible Bill Series</h3>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Custom Bill Numbers</h3>
                     <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                        Customize automatic invoice sequencing. Configure customized prefixes (e.g. `INV-2026-`) in your settings to match your fiscal year requirements.
+                        Choose how your bills are numbered. Easily customize your billing prefixes and serial numbers to match your business requirements.
                     </p>
                 </div>
 
@@ -328,9 +328,9 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5c-.313 1.565-.927 3.054-1.814 4.385m1.814-4.385a19.07 19.07 0 013.268 4.385m-3.268-4.385V3m-2.4 13.5H3.6"></path>
                         </svg>
                     </div>
-                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Regional Font PDFs</h3>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Local Language Support</h3>
                     <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                        Full Unicode compatibility. Enable the regional font system and upload a TrueType (`.ttf`) file (such as Gujarati fonts) for PDF generation.
+                        Create invoices in your local language (such as Gujarati, Hindi, and others) by uploading your business's preferred local language font.
                     </p>
                 </div>
 
@@ -342,9 +342,9 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 13h.01M6 17h.01M6 9h.01M3 9a2 2 0 012-2h1a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">WhatsApp & Sharing</h3>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Easy WhatsApp Sharing</h3>
                     <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                        Share secure, unauthenticated preview links (`/invoice/{token}`) directly with customers, letting them view invoices on mobile and download PDFs instantly.
+                        Share direct links with customers via WhatsApp, allowing them to view invoices on mobile devices and download PDF receipts instantly.
                     </p>
                 </div>
 
@@ -355,16 +355,14 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4"></path>
                         </svg>
                     </div>
-                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Google OAuth Login</h3>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Quick Google Login</h3>
                     <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                        Log in or sign up instantly with your Google account alongside standard email and password authentication, backed by Laravel Socialite.
+                        Sign up or log in instantly using your Google account in one tap, with no complex passwords to set up or remember.
                     </p>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- How It Works Section -->
+        <!-- How It Works Section -->
     <section id="how-it-works" class="py-20 bg-white dark:bg-slate-900 transition-colors duration-300">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="mx-auto max-w-3xl text-center space-y-4 mb-16">
@@ -383,9 +381,9 @@
                     <!-- Step 1 -->
                     <div class="flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
                         <div class="lg:w-1/2 lg:text-right order-2 lg:order-1">
-                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">1. Set Up Your Business Profile</h3>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">1. Enter Business Details</h3>
                             <p class="text-slate-600 dark:text-slate-400 leading-relaxed max-w-md lg:ml-auto">
-                                Register your account, input company headers, configure banking details, upload your corporate logo, and choose custom fonts.
+                                Register your account, add your business name, corporate logo, contact details, and bank details for invoice printouts.
                             </p>
                         </div>
                         <div class="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-blue-600 text-white font-bold ring-8 ring-blue-50 dark:ring-blue-950/50 order-1 lg:order-2">
@@ -397,7 +395,7 @@
                                 <span class="text-xs font-bold text-blue-600 dark:text-blue-400">Settings Form</span>
                                 <div class="mt-2 text-xs font-semibold text-slate-500">Business Name: <span class="text-slate-700 dark:text-slate-300">My Agency LLC</span></div>
                                 <div class="mt-1 text-xs font-semibold text-slate-500">Currency: <span class="text-slate-700 dark:text-slate-300">INR (₹)</span></div>
-                                <div class="mt-1 text-xs font-semibold text-slate-500">Gujarati Font: <span class="text-green-500">Enabled (Shruti.ttf)</span></div>
+                                <div class="mt-1 text-xs font-semibold text-slate-500">Local Language: <span class="text-green-500">Gujarati</span></div>
                             </div>
                         </div>
                     </div>
@@ -416,9 +414,9 @@
                             2
                         </div>
                         <div class="lg:w-1/2 order-2">
-                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">2. Populate Your Catalog</h3>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">2. Add Your Items</h3>
                             <p class="text-slate-600 dark:text-slate-400 leading-relaxed max-w-md">
-                                Build a reusable catalog of products or service rates with configurable measurements, eliminating tedious manual data entry on new invoices.
+                                Create a reusable list of your products or services with their rates. This saves time and avoids mistakes when making new bills.
                             </p>
                         </div>
                     </div>
@@ -426,9 +424,9 @@
                     <!-- Step 3 -->
                     <div class="flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
                         <div class="lg:w-1/2 lg:text-right order-2 lg:order-1">
-                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">3. Issue Custom Bills</h3>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">3. Create Invoice</h3>
                             <p class="text-slate-600 dark:text-slate-400 leading-relaxed max-w-md lg:ml-auto">
-                                Create invoices dynamically using reactive forms, select matching clients, automatically calculate tax/totals, and set custom numbering prefixes.
+                                Create bills easily using our simple form, select clients, automatically calculate taxes/totals, and set custom bill numbers.
                             </p>
                         </div>
                         <div class="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-blue-600 text-white font-bold ring-8 ring-blue-50 dark:ring-blue-950/50 order-1 lg:order-2">
@@ -441,8 +439,8 @@
                                 <div class="mt-2 h-1.5 w-24 bg-slate-300 dark:bg-slate-700 rounded"></div>
                                 <div class="mt-1.5 h-1.5 w-16 bg-slate-300 dark:bg-slate-700 rounded"></div>
                                 <div class="mt-3 flex gap-2">
-                                    <div class="h-4 w-12 bg-blue-500/20 rounded"></div>
-                                    <div class="h-4 w-8 bg-green-500/20 rounded"></div>
+                                     <div class="h-4 w-12 bg-blue-500/20 rounded"></div>
+                                     <div class="h-4 w-8 bg-green-500/20 rounded"></div>
                                 </div>
                             </div>
                         </div>
@@ -454,16 +452,16 @@
                             <!-- Visual box -->
                             <div class="bg-slate-50 dark:bg-slate-950 border border-slate-200/60 dark:border-slate-800/60 rounded-xl p-5 w-fit lg:ml-auto">
                                 <span class="text-xs font-bold text-green-600">WhatsApp Link Generated</span>
-                                <div class="mt-2 text-xs text-blue-500 underline truncate max-w-xs">/invoice/8cfb8a21...</div>
+                                <div class="mt-2 text-xs text-blue-500 underline truncate max-w-xs">/invoice/preview...</div>
                             </div>
                         </div>
                         <div class="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-blue-600 text-white font-bold ring-8 ring-blue-50 dark:ring-blue-950/50 order-1">
                             4
                         </div>
                         <div class="lg:w-1/2 order-2">
-                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">4. Send Sharing Links</h3>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">4. Share with Clients</h3>
                             <p class="text-slate-600 dark:text-slate-400 leading-relaxed max-w-md">
-                                Generate secure public preview URLs. Share them on WhatsApp or SMS, permitting clients to read invoices and fetch original PDFs without logging in.
+                                Send the secure bill link directly to your customer. They can open it on their mobile phone and download the PDF easily without logging in.
                             </p>
                         </div>
                     </div>
@@ -472,64 +470,57 @@
         </div>
     </section>
 
-    <!-- Technology Accordion Section -->
-    <section id="tech-stack" class="py-20 bg-slate-50 dark:bg-slate-950 transition-colors duration-300">
-        <div class="mx-auto max-w-4xl px-4 sm:px-6">
-            <div class="text-center space-y-4 mb-12">
-                <span class="text-xs font-extrabold uppercase tracking-widest text-blue-600 dark:text-blue-400">Under the Hood</span>
-                <h2 class="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">
-                    Modern & Lightweight Architecture
+    <!-- Benefits / Why Choose Us Section -->
+    <section id="benefits" class="py-20 bg-slate-50 dark:bg-slate-950 transition-colors duration-300">
+        <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+            <div class="text-center space-y-4 mb-16">
+                <span class="text-xs font-extrabold uppercase tracking-widest text-blue-600 dark:text-blue-400">Why Choose Us</span>
+                <h2 class="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
+                    Invoicing Made Simple for Everyone
                 </h2>
-                <p class="text-slate-600 dark:text-slate-400 text-sm max-w-xl mx-auto">
-                    BillPro leverages modern technologies designed to scale efficiently on lightweight, read-only containers and SQLite databases.
+                <p class="text-slate-600 dark:text-slate-400 text-lg max-w-2xl mx-auto">
+                    No complex setups, no jargon, and no monthly fees. Just a clean tool to help you run your business smoothly.
                 </p>
             </div>
 
-            <!-- Flowbite Accordion -->
-            <div id="accordion-collapse" data-accordion="collapse">
-                <!-- Header 1 -->
-                <h2 id="accordion-collapse-heading-1">
-                    <button type="button" class="flex items-center justify-between w-full p-5 font-semibold text-left text-slate-900 border border-b-0 border-slate-200 rounded-t-2xl focus:ring-4 focus:ring-slate-100 dark:focus:ring-slate-800 dark:border-slate-800 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors" data-accordion-target="#accordion-collapse-body-1" aria-expanded="true" aria-controls="accordion-collapse-body-1">
-                        <span>🚀 Laravel 11.x & PHP 8.4 Engine</span>
-                        <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                <!-- Benefit 1 -->
+                <div class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow duration-300">
+                    <div class="w-10 h-10 rounded-lg bg-green-50 dark:bg-green-950/50 text-green-600 dark:text-green-400 flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
                         </svg>
-                    </button>
-                </h2>
-                <div id="accordion-collapse-body-1" class="hidden" aria-labelledby="accordion-collapse-heading-1">
-                    <div class="p-5 border border-b-0 border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                        Built upon Laravel 11, our application utilizes modern PHP features to deliver strict type safety, clean controller handling, and responsive request lifecycle routing.
                     </div>
+                    <h3 class="font-bold text-slate-900 dark:text-white mb-2">100% Private & Safe</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Your bills, products, and customer details belong to you alone. We do not store or sell your data.
+                    </p>
                 </div>
 
-                <!-- Header 2 -->
-                <h2 id="accordion-collapse-heading-2">
-                    <button type="button" class="flex items-center justify-between w-full p-5 font-semibold text-left text-slate-900 border border-b-0 border-slate-200 focus:ring-4 focus:ring-slate-100 dark:focus:ring-slate-800 dark:border-slate-800 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors" data-accordion-target="#accordion-collapse-body-2" aria-expanded="false" aria-controls="accordion-collapse-body-2">
-                        <span>⚡ Livewire v3 & Tailwind CSS v4</span>
-                        <svg data-accordion-icon class="w-3 h-3 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+                <!-- Benefit 2 -->
+                <div class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow duration-300">
+                    <div class="w-10 h-10 rounded-lg bg-blue-50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                         </svg>
-                    </button>
-                </h2>
-                <div id="accordion-collapse-body-2" class="hidden" aria-labelledby="accordion-collapse-heading-2">
-                    <div class="p-5 border border-b-0 border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                        Enjoy desktop-grade reactivity without the bloat of full SPA frameworks. Tailwind CSS v4 provides cutting-edge CSS compilation, resulting in extremely fast page paint metrics.
                     </div>
+                    <h3 class="font-bold text-slate-900 dark:text-white mb-2">Lightning Fast</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Create and download bills in seconds. The simple interface works perfectly on mobile phones, tablets, and computers.
+                    </p>
                 </div>
 
-                <!-- Header 3 -->
-                <h2 id="accordion-collapse-heading-3">
-                    <button type="button" class="flex items-center justify-between w-full p-5 font-semibold text-left text-slate-900 border border-slate-200 rounded-b-2xl focus:ring-4 focus:ring-slate-100 dark:focus:ring-slate-800 dark:border-slate-800 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors" data-accordion-target="#accordion-collapse-body-3" aria-expanded="false" aria-controls="accordion-collapse-body-3">
-                        <span>🐳 SQLite & Docker Container Ready</span>
-                        <svg data-accordion-icon class="w-3 h-3 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+                <!-- Benefit 3 -->
+                <div class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow duration-300">
+                    <div class="w-10 h-10 rounded-lg bg-purple-50 dark:bg-purple-950/50 text-purple-600 dark:text-purple-400 flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"></path>
                         </svg>
-                    </button>
-                </h2>
-                <div id="accordion-collapse-body-3" class="hidden" aria-labelledby="accordion-collapse-heading-3">
-                    <div class="p-5 border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-sm text-slate-600 dark:text-slate-400 rounded-b-2xl leading-relaxed">
-                        Features preconfigured SQLite database setup. Packaged with a multi-stage production Docker container ready to deploy instantly onto Render, Heroku, or digital private server clusters.
                     </div>
+                    <h3 class="font-bold text-slate-900 dark:text-white mb-2">No Subscriptions</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Use every single feature with zero monthly charges. No hidden costs, limit upgrades, or locked features.
+                    </p>
                 </div>
             </div>
         </div>
@@ -549,25 +540,25 @@
                 <div class="space-y-2">
                     <h3 class="font-bold text-slate-900 dark:text-white">Is this platform completely free?</h3>
                     <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                        Yes! BillPro is fully open-source under the MIT license. You can install it on your own server or host it locally for zero monthly licensing charges.
+                        Yes! BillPro is completely free to use. There are no hidden monthly charges, card limits, or upgrade screens. Use every invoicing feature free forever.
                     </p>
                 </div>
                 <div class="space-y-2">
                     <h3 class="font-bold text-slate-900 dark:text-white">Does it support regional scripts?</h3>
                     <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                        Yes. By enabling regional options in Settings and uploading any `.ttf` font file, mPDF will compile matching characters (e.g. Gujarati script) correctly on invoices.
+                        Yes. You can upload your preferred local font (like Gujarati or Hindi) directly in the Settings, and the system will automatically print your invoices in that language.
                     </p>
                 </div>
                 <div class="space-y-2">
                     <h3 class="font-bold text-slate-900 dark:text-white">Can clients view bills without logging in?</h3>
                     <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                        Absolutely. Client links contain a secure token. Clicking it opens a beautiful preview of the invoice directly on their mobile device or desktop browser.
+                        Absolutely. When you share a bill link, your client can open it on their mobile phone or computer to view and download the PDF immediately, without needing to sign up.
                     </p>
                 </div>
                 <div class="space-y-2">
-                    <h3 class="font-bold text-slate-900 dark:text-white">How do I deploy this to production?</h3>
+                    <h3 class="font-bold text-slate-900 dark:text-white">Do I need special training to use it?</h3>
                     <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                        This codebase is pre-configured with a production-ready `Dockerfile` and SQLite connection settings, letting you deploy immediately on Render in minutes.
+                        Not at all. BillPro is designed to be extremely simple and straightforward. If you know how to fill out a basic form, you can start billing in less than two minutes.
                     </p>
                 </div>
             </div>
@@ -621,14 +612,14 @@
 
                 <!-- Copyright -->
                 <p class="text-xs text-slate-500 dark:text-slate-400">
-                    &copy; 2026 BillPro. Released under the MIT License.
+                    &copy; 2026 BillPro. Completely free to use.
                 </p>
 
                 <!-- Footer links -->
                 <div class="flex gap-4 text-xs text-slate-500 dark:text-slate-400">
                     <a href="#features" class="hover:underline hover:text-blue-500">Features</a>
                     <a href="#how-it-works" class="hover:underline hover:text-blue-500">Process</a>
-                    <a href="#tech-stack" class="hover:underline hover:text-blue-500">Tech</a>
+                    <a href="#benefits" class="hover:underline hover:text-blue-500">Why Us</a>
                 </div>
             </div>
         </div>
