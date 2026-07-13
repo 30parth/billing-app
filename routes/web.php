@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BillPdfController;
 use App\Http\Controllers\GoogleAuthController;
@@ -21,6 +22,10 @@ Route::middleware('guest')->group(function () {
 
 Route::get('/invoice/{token}', [BillPdfController::class, 'publicPreview'])->name('bill.public.preview');
 Route::get('/invoice/{token}/download', [BillPdfController::class, 'publicDownload'])->name('bill.public.download');
+
+Route::middleware('auth.basic')->prefix('api')->name('api.')->group(function () {
+    Route::post('/products', [ProductController::class, 'store'])->name('products.store');
+});
 
 Route::middleware('auth')->group(function () {
 
