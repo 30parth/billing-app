@@ -173,4 +173,64 @@ class ExampleTest extends TestCase
         $responseDownload->assertStatus(200);
         $responseDownload->assertHeader('Content-Type', 'application/pdf');
     }
+
+    /**
+     * Test global user scope tenant isolation and public route bypass.
+     */
+    public function test_global_user_scope_isolation_and_bypass(): void
+    {
+        $userA = \App\Models\User::create([
+            'name' => 'User A',
+            'email' => 'usera_' . uniqid() . '@example.com',
+            'password' => bcrypt('password'),
+        ]);
+
+        $userB = \App\Models\User::create([
+            'name' => 'User B',
+            'email' => 'userb_' . uniqid() . '@example.com',
+            'password' => bcrypt('password'),
+        ]);
+
+        // Create product for User A
+        $this->actingAs($userA);
+        $productA = \App\Models\Product::create([
+            'name' => 'Product A',
+            'price' => 100.00,
+            'tax' => 18,
+            'description' => 'User A Product',
+        ]);
+        $billA = \App\Models\Bill::create([
+            'date' => '2026-07-02',
+            'bill_no' => 'A_111',
+            'customer_name' => 'Customer A',
+            'total' => 100.00,
+        ]);
+
+        // Switch to User B - should not see User A's products or bills
+        $this->actingAs($userB);
+        $this->assertEquals(0, \App\Models\Product::count());
+        $this->assertEquals(0, \App\Models\Bill::count());
+
+        // Create product/bill for User B
+        $productB = \App\Models\Product::create([
+            'name' => 'Product B',
+            'price' => 200.00,
+            'tax' => 12,
+            'description' => 'User B Product',
+        ]);
+        $this->assertEquals(1, \App\Models\Product::count());
+        $this->assertEquals('Product B', \App\Models\Product::first()->name);
+
+        // Switch back to User A - should only see User A's items
+        $this->actingAs($userA);
+        $this->assertEquals(1, \App\Models\Product::count());
+        $this->assertEquals('Product A', \App\Models\Product::first()->name);
+
+        // Switch to User B and check if they can access User A's public invoice (bypass scope on public routes)
+        $this->actingAs($userB);
+        $tokenUrl = route('bill.public.preview', ['token' => $billA->secure_token]);
+        $response = $this->get($tokenUrl);
+        $response->assertStatus(200);
+        $response->assertSee('Customer A');
+    }
 }

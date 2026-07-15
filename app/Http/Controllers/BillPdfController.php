@@ -10,7 +10,7 @@ class BillPdfController extends Controller
 {
     public function generate($id)
     {
-        $bill = Bill::where('user_id', Auth::user()->id)->with('billProducts.product')->findOrFail($id);
+        $bill = Bill::with('billProducts.product')->findOrFail($id);
 
         $setting = Auth::user()->setting;
 

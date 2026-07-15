@@ -3,7 +3,6 @@
 namespace App\Livewire\Product;
 
 use App\Models\Product;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithoutUrlPagination;
 use Livewire\WithPagination;
@@ -27,13 +26,12 @@ class ProductList extends Component
 
     public function delete($id)
     {
-        Product::where('user_id', Auth::user()->id)->findOrFail($id)->delete();
+        Product::findOrFail($id)->delete();
     }
 
     public function render()
     {
         $products = Product::query()
-            ->where('user_id', Auth::user()->id)
             ->where(function ($query) {
                 $query->where('name', 'like', "%$this->search%")
                     ->orWhere('price', 'like', "%$this->search%")

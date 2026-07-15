@@ -4,12 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Facades\Auth;
+use App\Traits\BelongsToUser;
 
 
 class BillProduct extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, BelongsToUser;
 
     protected $fillable = [
         'bill_id',
@@ -20,24 +20,6 @@ class BillProduct extends Model
         'total',
         'user_id',
     ];
-
-    public static function boot()
-    {
-        parent::boot();
-
-        static::creating(function ($model) {
-            $model->user_id = Auth::user()->id;
-        });
-
-        static::updating(function ($model) {
-            $model->user_id = Auth::user()->id;
-        });
-    }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
 
     public function bill()
     {

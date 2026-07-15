@@ -28,7 +28,7 @@ class BilList extends Component
 
     public function delete($id)
     {
-        $bill = Bill::where('user_id', Auth::user()->id)->findOrFail($id);
+        $bill = Bill::findOrFail($id);
         $bill->billProducts()->delete();
         $bill->delete();
 
@@ -38,7 +38,7 @@ class BilList extends Component
     public function downloadBill($id)
     {
         // 1. Fetch bill with relationships
-        $bill = Bill::where('user_id', Auth::user()->id)->with('billProducts.product')->findOrFail($id);
+        $bill = Bill::with('billProducts.product')->findOrFail($id);
 
         $setting = Auth::user()->setting;
 
@@ -88,7 +88,7 @@ class BilList extends Component
 
     public function render()
     {
-        $bills = Bill::where('user_id', Auth::user()->id)
+        $bills = Bill::query()
             ->where(function ($query) {
                 $query->where('customer_name', 'like', "%{$this->search}%")
                     ->orWhere('bill_no', 'like', "%{$this->search}%")

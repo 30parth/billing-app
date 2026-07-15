@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\BelongsToUser;
 
 class Setting extends Model
 {
-    use HasFactory;
+    use HasFactory, BelongsToUser;
 
     protected $fillable = [
         'user_id',
@@ -25,9 +26,4 @@ class Setting extends Model
         'font_path',
         'use_gujarati_font',
     ];
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
 }

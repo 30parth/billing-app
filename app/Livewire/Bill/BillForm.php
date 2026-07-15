@@ -22,13 +22,10 @@ class BillForm extends Component
         $this->form->date = Carbon::today()->format('Y-m-d');
         if ($id) {
             $this->id = $id;
-            $bill = Bill::where('user_id', Auth::user()->id)->findOrFail($id);
+            $bill = Bill::findOrFail($id);
             $this->form->setBill($bill);
         } else {
-            $series = BillSeries::firstOrCreate(
-                ['user_id' => Auth::user()->id],
-                ['prefix' => 'B_', 'current' => 0]
-            );
+            $series = BillSeries::firstOrCreate([], ['prefix' => 'B_', 'current' => 0]);
             $this->form->bill_no = $series->prefix.($series->current + 1);
         }
     }
@@ -64,7 +61,7 @@ class BillForm extends Component
 
     public function updatedFormProductProductId()
     {
-        $product = Product::where('user_id', Auth::user()->id)->findOrFail($this->form->product['product_id']);
+        $product = Product::findOrFail($this->form->product['product_id']);
         $this->form->product['price'] = $product->price;
     }
 
@@ -113,7 +110,7 @@ class BillForm extends Component
         $this->form->total = collect($this->form->products)->sum('total');
 
         if ($this->id) {
-            $bill = Bill::where('user_id', Auth::user()->id)->findOrFail($this->id);
+            $bill = Bill::findOrFail($this->id);
             $bill->update([
                 'date' => $this->form->date,
                 'bill_no' => $this->form->bill_no,
@@ -134,10 +131,7 @@ class BillForm extends Component
                 'total' => $this->form->total,
             ]);
 
-            $series = BillSeries::firstOrCreate(
-                ['user_id' => Auth::user()->id],
-                ['prefix' => 'B_', 'current' => 0]
-            );
+            $series = BillSeries::firstOrCreate([], ['prefix' => 'B_', 'current' => 0]);
             $series->increment('current');
         }
 

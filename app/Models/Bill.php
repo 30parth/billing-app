@@ -4,11 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Facades\Auth;
+use App\Traits\BelongsToUser;
 
 class Bill extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, BelongsToUser;
 
     protected $fillable = [
         'date',
@@ -26,25 +26,15 @@ class Bill extends Model
         parent::boot();
 
         static::creating(function ($model) {
-            $model->user_id = Auth::user()->id;
             if (!$model->secure_token) {
                 $model->secure_token = bin2hex(random_bytes(16));
             }
-        });
-
-        static::updating(function ($model) {
-            $model->user_id = Auth::user()->id;
         });
     }
 
     public function billProducts()
     {
         return $this->hasMany(BillProduct::class, 'bill_id', 'id')->whereNull('deleted_at');
-    }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
     }
 
     public function getAmountInWordsAttribute()
