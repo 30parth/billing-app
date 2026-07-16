@@ -53,6 +53,18 @@ class ProductApiTest extends TestCase
             ->assertJsonValidationErrors(['name', 'price'])
             ->assertJsonFragment(['Product name must be at least 3 characters long.'])
             ->assertJsonFragment(['Price must be a number.']);
+
+        // 3. Tax not in predefined rates
+        $response = $this->actingAs($user)
+            ->postJson(route('api.products.store'), [
+                'name' => 'Valid Name',
+                'price' => 100,
+                'tax' => 15,
+            ]);
+
+        $response->assertStatus(422)
+            ->assertJsonValidationErrors(['tax'])
+            ->assertJsonFragment(['Tax rate must be one of the predefined rates.']);
     }
 
     /**
@@ -69,6 +81,7 @@ class ProductApiTest extends TestCase
         $productData = [
             'name' => 'New Awesome Product',
             'price' => 199.99,
+            'tax' => 18,
             'description' => 'A great description for the product.',
         ];
 
@@ -83,6 +96,7 @@ class ProductApiTest extends TestCase
                     'id',
                     'name',
                     'price',
+                    'tax',
                     'description',
                     'user_id',
                     'created_at',
@@ -95,6 +109,7 @@ class ProductApiTest extends TestCase
                 'data' => [
                     'name' => 'New Awesome Product',
                     'price' => 199.99,
+                    'tax' => 18,
                     'description' => 'A great description for the product.',
                     'user_id' => $user->id,
                 ]
@@ -103,6 +118,7 @@ class ProductApiTest extends TestCase
         $this->assertDatabaseHas('products', [
             'name' => 'New Awesome Product',
             'price' => 199.99,
+            'tax' => 18,
             'description' => 'A great description for the product.',
             'user_id' => $user->id,
         ]);

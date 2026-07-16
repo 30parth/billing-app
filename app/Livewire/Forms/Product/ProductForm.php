@@ -11,6 +11,8 @@ class ProductForm extends Form
 
     public string $price;
 
+    public int $tax = 0;
+
     public string $description = '';
 
     public function rules(): array
@@ -18,6 +20,7 @@ class ProductForm extends Form
         return [
             'name' => 'required|min:3',
             'price' => 'required|numeric',
+            'tax' => 'required|integer|in:0,5,12,18,28',
             'description' => 'nullable',
         ];
     }
@@ -29,6 +32,9 @@ class ProductForm extends Form
             'name.min' => 'Product name must be at least 3 characters long.',
             'price.required' => 'Price is required.',
             'price.numeric' => 'Price must be a number.',
+            'tax.required' => 'Tax rate is required.',
+            'tax.integer' => 'Tax rate must be an integer.',
+            'tax.in' => 'Tax rate must be one of the predefined rates.',
         ];
     }
 
@@ -37,6 +43,7 @@ class ProductForm extends Form
         $this->id = $product->id;
         $this->name = $product->name;
         $this->price = $product->price;
+        $this->tax = $product->tax ?? 0;
         $this->description = $product->description;
     }
 

@@ -17,6 +17,7 @@
                     <x-ui.table.th>Sr No</x-ui.table.th>
                     <x-ui.table.th>Product Name</x-ui.table.th>
                     <x-ui.table.th>Price</x-ui.table.th>
+                    <x-ui.table.th>Tax (%)</x-ui.table.th>
                     <x-ui.table.th>Description</x-ui.table.th>
                     <x-ui.table.th class="text-between">Action</x-ui.table.th>
                 </tr>
@@ -27,6 +28,7 @@
                         <x-ui.table.td>{{ $index + 1 }}</x-ui.table.td>
                         <x-ui.table.td>{{ $product->name }}</x-ui.table.td>
                         <x-ui.table.td>{{ $product->price }}</x-ui.table.td>
+                        <x-ui.table.td>{{ $product->tax }}%</x-ui.table.td>
                         <x-ui.table.td>{{ $product->description }}</x-ui.table.td>
                         <x-ui.table.td>
                             <x-common.action-button id="{{ $product->id }}" modalId="product-form-modal" />

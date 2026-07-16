@@ -233,4 +233,43 @@ class ExampleTest extends TestCase
         $response->assertStatus(200);
         $response->assertSee('Customer A');
     }
+
+    /**
+     * Test product creation with tax via Livewire ProductForm.
+     */
+    public function test_product_creation_via_livewire_form(): void
+    {
+        $user = \App\Models\User::create([
+            'name' => 'Test User',
+            'email' => 'test_' . uniqid() . '@example.com',
+            'password' => bcrypt('password'),
+        ]);
+
+        // Valid product data
+        \Livewire\Livewire::actingAs($user)
+            ->test(\App\Livewire\Product\ProductForm::class)
+            ->set('form.name', 'Form Product')
+            ->set('form.price', '150.00')
+            ->set('form.tax', 18)
+            ->set('form.description', 'Form Description')
+            ->call('save')
+            ->assertHasNoErrors();
+
+        $this->assertDatabaseHas('products', [
+            'name' => 'Form Product',
+            'price' => 150.00,
+            'tax' => 18,
+            'description' => 'Form Description',
+            'user_id' => $user->id,
+        ]);
+
+        // Invalid tax data
+        \Livewire\Livewire::actingAs($user)
+            ->test(\App\Livewire\Product\ProductForm::class)
+            ->set('form.name', 'Invalid Form Product')
+            ->set('form.price', '150.00')
+            ->set('form.tax', 15) // invalid tax rate
+            ->call('save')
+            ->assertHasErrors(['form.tax']);
+    }
 }
