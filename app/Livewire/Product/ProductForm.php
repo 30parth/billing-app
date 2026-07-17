@@ -41,14 +41,6 @@ class ProductForm extends Component
 
     public function render()
     {
-        $taxRates = [
-            ['id' => 0, 'name' => '0%'],
-            ['id' => 5, 'name' => '5%'],
-            ['id' => 12, 'name' => '12%'],
-            ['id' => 18, 'name' => '18%'],
-            ['id' => 28, 'name' => '28%'],
-        ];
-
-        return view('livewire.product.product-form', compact('taxRates'));
+        return view('livewire.product.product-form');
     }
 }
