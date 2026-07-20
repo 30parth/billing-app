@@ -44,4 +44,52 @@ class ProductController extends Controller
             'data' => $product,
         ], 200);
     }
+
+    public function edit($id)
+    {
+        $product = Product::find($id);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Product fetched successfully.',
+            'data' => $product,
+        ], 200);
+    }
+
+    public function update(Request $request, $id): JsonResponse
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|min:3',
+            'price' => 'required|numeric|min:0',
+            'tax' => 'nullable|integer|in:0,5,12,18,28',
+            'description' => 'nullable|string',
+        ], [
+            'name.required' => 'Product name is required.',
+            'name.min' => 'Product name must be at least 3 characters long.',
+            'price.required' => 'Price is required.',
+            'price.numeric' => 'Price must be a number.',
+            'tax.integer' => 'Tax rate must be an integer.',
+            'tax.in' => 'Tax rate must be one of the predefined rates.',
+        ]);
+
+        $product = Product::find($id);
+        $product->update($validated);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Product updated successfully.',
+            'data' => $product,
+        ], 200);
+    }
+
+    public function destroy($id): JsonResponse
+    {
+        $product = Product::find($id);
+        $product->delete();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Product deleted successfully.',
+        ], 200);
+    }
 }
