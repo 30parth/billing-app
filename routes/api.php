@@ -8,6 +8,8 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/products', [ProductController::class, 'index'])->name('api.products.index');
-    Route::post('/products', [ProductController::class, 'store'])->name('api.products.store');
+    // Route::get('/products', [ProductController::class, 'index'])->name('api.products.index');
+    // Route::post('/products', [ProductController::class, 'store'])->name('api.products.store');
+
+    Route::resource('products', ProductController::class);
 });
