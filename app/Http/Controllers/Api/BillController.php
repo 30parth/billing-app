@@ -67,6 +67,15 @@ class BillController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $bill = Bill::find($id);
+
+        $bill->billProducts()->delete();
+
+        $bill->delete();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Bill deleted successfully.',
+        ], 200);
     }
 }
