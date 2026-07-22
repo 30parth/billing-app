@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\BillController;
 use App\Http\Controllers\Api\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -12,4 +13,6 @@ Route::middleware('auth:sanctum')->group(function () {
     // Route::post('/products', [ProductController::class, 'store'])->name('api.products.store');
 
     Route::resource('products', ProductController::class);
+    Route::resource('bills', BillController::class);
+
 });
